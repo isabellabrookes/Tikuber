@@ -1,13 +1,14 @@
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm'
-import { Exclude } from 'class-transformer';
-import { MinLength, IsString, IsEmail } from 'class-validator';
+import {BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm'
+import { Exclude } from 'class-transformer'
+import { MinLength, IsString, IsEmail } from 'class-validator'
 import * as bcrypt from 'bcrypt'
-import { Player } from '../games/entities';
+import { Comment } from '../comments/entity'
+import { Ticket } from '../tickets/entity'
 
 @Entity()
-export default class User extends BaseEntity {
+class User extends BaseEntity {
 
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn("uuid")
   id?: number
 
   @IsString()
@@ -30,6 +31,16 @@ export default class User extends BaseEntity {
   @Exclude({ toPlainOnly: true })
   password: string
 
+  @OneToMany(_ => Ticket, ticket => ticket.sellerUser)
+  forSaleTickets?: Ticket[]
+
+  @OneToMany(_ => Ticket, ticket => ticket.buyerUser)
+  purchasedTickets?: Ticket[]
+
+  @OneToMany(_ => Comment, comment => comment.user)
+  comments?: Comment[]
+
+
   async setPassword(rawPassword: string) {
     const hash = await bcrypt.hash(rawPassword, 10)
     this.password = hash
@@ -38,9 +49,6 @@ export default class User extends BaseEntity {
   checkPassword(rawPassword: string): Promise<boolean> {
     return bcrypt.compare(rawPassword, this.password)
   }
-
-  // this is a relation, read more about them here:
-  // http://typeorm.io/#/many-to-one-one-to-many-relations
-  @OneToMany(_ => Player, player => player.user) 
-  players: Player[]
 }
+
+export { User }
