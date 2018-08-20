@@ -6,7 +6,7 @@ import GamesList from './components/games/GamesList'
 import GameDetails from './components/games/GameDetails'
 import LogoutPage from './components/logout/LogoutPage'
 import './App.css'
-import TopBar from './components/layout/TopBar'
+import TopBar from './components/layout/NavBar'
 
 // <Route exact path="/signup" component={SignupPage} />
 // <Route exact path="/games" component={GamesList} />

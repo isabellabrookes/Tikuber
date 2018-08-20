@@ -8,7 +8,7 @@ import {userId} from '../../jwt'
 import {connect} from 'react-redux'
 import AccountIcon from 'material-ui-icons/AccountBox'
 
-const TopBar = (props) => {
+const NavBar = (props) => {
   const { location, history, user } = props
 
   return (
@@ -49,5 +49,5 @@ const mapStateToProps = state => ({
 })
 
 export default withRouter(
-  connect(mapStateToProps)(TopBar)
+  connect(mapStateToProps)(NavBar)
 )
