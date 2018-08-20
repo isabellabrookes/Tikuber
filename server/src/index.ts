@@ -20,7 +20,7 @@ useKoaServer(app, {
   cors: true,
   controllers: [
     UserController,
-    LoginController
+    LoginController,
   ],
   authorizationChecker: (action: Action) => {
     const header: string = action.request.headers.authorization
