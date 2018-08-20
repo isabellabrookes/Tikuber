@@ -9,6 +9,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { withStyles } from '@material-ui/core/styles';
 import AccountIcon from '@material-ui/icons/AccountBox'
+import {Redirect} from 'react-router-dom'
 
 const styles = theme => ({
   root: {
@@ -37,7 +38,7 @@ class AccountMenu extends React.Component {
   };
 
   render() {
-    const { classes, user } = this.props;
+    const { classes, user, history } = this.props;
     const { open } = this.state;
 
     return (
@@ -66,9 +67,9 @@ class AccountMenu extends React.Component {
                 <Paper>
                   <ClickAwayListener onClickAway={this.handleClose}>
                     <MenuList>
-                      <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                      <MenuItem onClick={this.handleClose}>My account</MenuItem>
-                      <MenuItem onClick={this.handleClose}>Logout</MenuItem>
+                      <MenuItem onClick={()=> history.push('/')}>Profile</MenuItem>
+                      <MenuItem onClick={()=> history.push('/')}>My account</MenuItem>
+                      <MenuItem onClick={()=> history.push('/logout')}>Logout</MenuItem>
                     </MenuList>
                   </ClickAwayListener>
                 </Paper>

@@ -19,11 +19,11 @@ const NavBar = (props) => {
         </Typography>
         {
           user &&
-          <AccountMenu user={user} />
+          <AccountMenu user={user} history={history} />
         }
 
         {
-          !location.pathname.includes('login') &&
+          !user && !location.pathname.includes('login') &&
           <Button color="inherit" onClick={() => history.push('/login')}>Login</Button>
         }
         {
@@ -44,8 +44,9 @@ const NavBar = (props) => {
 }
 
 const mapStateToProps = state => ({
-  user: state.currentUser && state.users &&
-    state.users[userId(state.currentUser.jwt)]
+  user: state.currentUser
+    // && state.users &&
+    // state.users[userId(state.currentUser.jwt)]
 })
 
 export default withRouter(
