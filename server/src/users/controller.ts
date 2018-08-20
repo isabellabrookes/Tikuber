@@ -1,5 +1,5 @@
 import { JsonController, Post, Param, Get, Body, Authorized } from 'routing-controllers'
-import User from './entity';
+import {User} from './entity';
 import { io } from '../index'
 
 @JsonController()
@@ -28,7 +28,7 @@ export default class UserController {
   getUser(
     @Param('id') id: number
   ) {
-    return User.findOneById(id)
+    return User.findOne(id)
   }
 
   @Authorized()

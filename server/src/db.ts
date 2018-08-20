@@ -2,8 +2,11 @@ import { createConnection } from 'typeorm'
 import { DefaultNamingStrategy } from 'typeorm/naming-strategy/DefaultNamingStrategy'
 import { NamingStrategyInterface } from 'typeorm/naming-strategy/NamingStrategyInterface'
 import { snakeCase } from 'typeorm/util/StringUtils'
-import User from './users/entity'
-import { Player, Game } from './games/entities'
+import { User } from './users/entity'
+import { Role } from './users/roles/entity'
+import { Ticket } from './tickets/entity'
+import { Event } from './events/entity'
+import { Comment } from './comments/entity'
 
 class CustomNamingStrategy extends DefaultNamingStrategy implements NamingStrategyInterface {
 
@@ -12,7 +15,7 @@ class CustomNamingStrategy extends DefaultNamingStrategy implements NamingStrate
   }
 
   columnName(propertyName: string, customName: string, embeddedPrefixes: string[]): string {
-    return snakeCase(embeddedPrefixes.concat(customName ? customName : propertyName).join("_"));
+    return snakeCase(embeddedPrefixes.concat(customName ? customName : propertyName).join('_'));
   }
 
   columnNameCustomized(customName: string): string {
@@ -26,12 +29,14 @@ class CustomNamingStrategy extends DefaultNamingStrategy implements NamingStrate
 
 export default () =>
   createConnection({
-    type: "postgres",
+    type: 'postgres',
     url: process.env.DATABASE_URL || 'postgres://postgres:secret@localhost:5432/postgres',
     entities: [
       User,
-      Player,
-      Game
+      Role,
+      Event,
+      Ticket,
+      Comment
     ],
     synchronize: true, // careful with this in production!
     logging: true,

@@ -1,15 +1,19 @@
-import {BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm'
+import {BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne} from 'typeorm'
 import { Exclude } from 'class-transformer'
 import { MinLength, IsString, IsEmail } from 'class-validator'
 import * as bcrypt from 'bcrypt'
 import { Comment } from '../comments/entity'
 import { Ticket } from '../tickets/entity'
+import { Role } from './roles/entity'
 
 @Entity()
 class User extends BaseEntity {
 
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn('uuid')
   id?: number
+
+  @ManyToOne(_ => Role, role => role.type)
+  role: Role
 
   @IsString()
   @MinLength(2)
@@ -32,13 +36,13 @@ class User extends BaseEntity {
   password: string
 
   @OneToMany(_ => Ticket, ticket => ticket.sellerUser)
-  forSaleTickets?: Ticket[]
+  ticketsForSale?: Ticket[]
 
   @OneToMany(_ => Ticket, ticket => ticket.buyerUser)
-  purchasedTickets?: Ticket[]
+  ticketsPurchased?: Ticket[]
 
   @OneToMany(_ => Comment, comment => comment.user)
-  comments?: Comment[]
+  comments: Comment[]
 
 
   async setPassword(rawPassword: string) {
