@@ -54,7 +54,7 @@ class GamesList extends PureComponent {
     const {games, users, authenticated, createGame} = this.props
 
     if (!authenticated) return (
-			<Redirect to="/login" />
+			<Redirect to="/" />
 		)
 
     if (games === null || users === null) return null
