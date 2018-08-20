@@ -12,7 +12,7 @@ import { Ticket } from '../tickets/entity'
 @Entity()
 class Comment extends BaseEntity {
 
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn()
   id: number
 
   @ManyToOne(_ => User, user => user.comments)

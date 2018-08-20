@@ -10,7 +10,7 @@ import { Ticket } from '../tickets/entity'
 @Entity()
 class Event extends BaseEntity {
 
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn()
   id: number
 
   @IsString()

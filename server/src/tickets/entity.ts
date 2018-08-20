@@ -13,7 +13,7 @@ import { Comment } from '../comments/entity'
 @Entity()
 class Ticket extends BaseEntity {
 
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn()
   id: number
 
   @IsNumber()

@@ -9,7 +9,7 @@ import { Role } from './roles/entity'
 @Entity()
 class User extends BaseEntity {
 
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn()
   id?: number
 
   @ManyToOne(_ => Role, role => role.type)
