@@ -9,6 +9,7 @@ import InputAdornment from '@material-ui/core/InputAdornment/InputAdornment'
 import IconButton from '@material-ui/core/IconButton/IconButton'
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import {withRouter} from 'react-router'
 
 const styles = theme => ({
   container: {
@@ -36,21 +37,15 @@ class LoginForm extends PureComponent {
 		this.props.onSubmit(this.state)
 	}
 
-	handleChange = (event) => {
-    const {name, value} = event.target
-
-    this.setState({
-      [name]: value
-    })
+	handleChange = prop => event => {
+  this.setState({ [prop]: event.target.value })
   }
-
-  handleMouseDownPassword = event => {
-  };
 
   handleClickShowPassword = (e) => {
     e.preventDefault()
-    this.setState(state => ({ showPassword: !state.showPassword }));
-  };
+    this.setState(state => ({ showPassword: !state.showPassword }))
+    this.props.history.push('/')
+  }
 
 	render() {
     const { classes } = this.props
@@ -61,7 +56,7 @@ class LoginForm extends PureComponent {
           label="Email"
           className={classes.textField}
           value={this.state.email}
-          onChange={this.handleChange}
+          onChange={this.handleChange("email")}
           margin="normal"
         />
         <FormControl className={classes.textField}>
@@ -70,7 +65,7 @@ class LoginForm extends PureComponent {
             id="adornment-password"
             type={this.state.showPassword ? 'text' : 'password'}
             value={this.state.password}
-            onChange={this.handleChange}
+            onChange={this.handleChange("password")}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
@@ -84,25 +79,11 @@ class LoginForm extends PureComponent {
             }
           />
         </FormControl>
-        {/*<div>*/}
-					{/*<label htmlFor="email">Email</label>*/}
-					{/*<input type="email" name="email" id="email" value={*/}
-						{/*this.state.email || ''*/}
-					{/*} onChange={ this.handleChange } />*/}
-				{/*</div>*/}
-
-				{/*<div>*/}
-					{/*<label htmlFor="password">Password</label>*/}
-					{/*<input type="password" name="password" id="password" value={*/}
-						{/*this.state.password || ''*/}
-					{/*} onChange={ this.handleChange } />*/}
-				{/*</div>*/}
         <Button variant="contained" type="submit">Login</Button>
-				{/*<button type="submit">Login</button>*/}
 			</form>
 		)
 	}
 }
 
 
-export default withStyles(styles)(LoginForm);
+export default withRouter(withStyles(styles)(LoginForm))

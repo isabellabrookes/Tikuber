@@ -27,11 +27,11 @@ const NavBar = (props) => {
           <Button color="inherit" onClick={() => history.push('/login')}>Login</Button>
         }
         {
-          location.pathname.includes('login') &&
+          !user && !location.pathname.includes('signup') &&
           <Button color="inherit" onClick={() => history.push('/signup')}>Sign up</Button>
         }
         {
-          location.pathname.includes('games/') &&
+          user && !location.pathname.includes('games/') &&
           <Button color="inherit" onClick={() => history.push('/games')}>All Games</Button>
         }
         {
@@ -44,9 +44,7 @@ const NavBar = (props) => {
 }
 
 const mapStateToProps = state => ({
-  user: state.currentUser
-    // && state.users &&
-    // state.users[userId(state.currentUser.jwt)]
+  user: state.currentUser && state.users && state.users[userId(state.currentUser.jwt)]
 })
 
 export default withRouter(
