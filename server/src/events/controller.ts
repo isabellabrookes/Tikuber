@@ -1,7 +1,7 @@
 import {
   Authorized,
   Body,
-  CurrentUser, Get,
+  Get,
   HttpCode,
   JsonController,
   NotFoundError,
@@ -9,7 +9,7 @@ import {
   Post,
   Put
 } from "routing-controllers";
-import {Event} from "../events/entity"
+import {Event} from "./entity"
 import {io} from "../index"
 
 @JsonController()
