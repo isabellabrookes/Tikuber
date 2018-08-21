@@ -26,12 +26,12 @@ class Ticket extends BaseEntity {
 
   @IsString()
   @Column()
-  image: string
+  image?: string
 
   @ManyToOne(_ => Event, event => event.tickets)
   event: Event
 
-  @ManyToOne(_ => User, user => user.ticketsForSale)
+  @ManyToOne(_ => User, user => user.ticketsForSale, {eager:true})
   sellerUser: User
 
   @OneToMany(_ => Comment, comment => comment.user)
@@ -39,6 +39,7 @@ class Ticket extends BaseEntity {
 
   @ManyToOne(_ => User, user => user.ticketsPurchased)
   buyerUser?: User
+
 }
 
 export { Ticket }

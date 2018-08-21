@@ -1,6 +1,9 @@
 import {
   Authorized,
   Body,
+  CurrentUser,
+  Delete,
+  ForbiddenError,
   Get,
   HttpCode,
   JsonController,
@@ -11,14 +14,39 @@ import {
 } from "routing-controllers";
 import {Event} from "./entity"
 import {io} from "../index"
+import {Ticket} from "../tickets/entity";
+import {User} from "../users/entity";
 
 @JsonController()
 export default class EventController {
 
+  @Get('/events/:id')
+  getEvent(
+    @Param('id') id: number
+  ) {
+    return Event.findOne(id)
+  }
+
+  @Get('/events')
+  getEvents() {
+    return Event.find()
+  }
+
+  @Get('/events/:id/tickets')
+  getTicketsForEvent(
+    @Param('id') id: number
+  ) {
+    return Ticket.find({where: {Event: id}})
+  }
+
   @Authorized()
   @Post('/events')
   @HttpCode(201)
-  async createEvent() {
+  async createEvent(
+    @CurrentUser({ required: true }) user: User,
+  ) {
+    if (user.role.type !== "Admin") throw new ForbiddenError(`User not Authorised`)
+
     const entity = await Event.create().save()
 
     const event = await Event.findOne(entity.id)
@@ -35,11 +63,13 @@ export default class EventController {
   @Put('/events/:id')
   @HttpCode(200)
   async updateEvent(
-    @Param('id') id: string,
-    @Body() update: Partial<Event>
+    @Param('id') id: number,
+    @Body() update: Partial<Event>,
+    @CurrentUser({ required: true }) user: User
   ) {
+    if (user.role.type !== "Admin") throw new ForbiddenError(`User not Authorised`)
     const event = await Event.findOne(id)
-    if (!event) throw new NotFoundError(`Event foes not exist`)
+    if (!event) throw new NotFoundError(`Event was not found!`)
 
     const updatedEvent = await Event.merge(event, update).save()
 
@@ -51,15 +81,23 @@ export default class EventController {
     return updatedEvent
   }
 
-  @Get('/events/:id')
-  getEvent(
-    @Param('id') id: number
-  ) {
-    return Event.findOne(id)
-  }
+  @Authorized()
+    @Delete('/events/:id')
+    @HttpCode(200)
+    async deleteEvent(
+      @Param('id') id: number,
+      @CurrentUser({ required: true }) user: User
+    ) {
+      const event = await Event.findOne(id)
+      if (!event) throw new NotFoundError(`Event ${id} was not found!`)
+      if (user.role.type !== "Admin") throw new ForbiddenError(`User not Authorised`)
+      io.emit('action', {
+        type: 'DELETE_EVENT',
+        payload: event
+      })
 
-  @Get('/events')
-  getEvents() {
-    return Event.find()
-  }
+      await Event.delete(event)
+      return  event
+    }
+
 }
