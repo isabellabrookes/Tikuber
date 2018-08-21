@@ -2,6 +2,7 @@ import {
   Authorized,
   Body,
   CurrentUser,
+  Delete,
   ForbiddenError,
   Get,
   HttpCode,
@@ -79,4 +80,24 @@ export default class EventController {
 
     return updatedEvent
   }
+
+  @Authorized()
+    @Delete('/events/:id')
+    @HttpCode(200)
+    async deleteEvent(
+      @Param('id') id: number,
+      @CurrentUser({ required: true }) user: User
+    ) {
+      const event = await Event.findOne(id)
+      if (!event) throw new NotFoundError(`Event ${id} was not found!`)
+      if (user.role.type !== "Admin") throw new ForbiddenError(`User not Authorised`)
+      io.emit('action', {
+        type: 'DELETE_EVENT',
+        payload: event
+      })
+
+      await Event.delete(event)
+      return  event
+    }
+
 }
