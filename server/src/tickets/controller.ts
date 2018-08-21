@@ -83,7 +83,7 @@ export default class TicketController {
     @CurrentUser({ required: true }) user: User
   ) {
     const ticket = await Ticket.findOne(id)
-    if (!ticket) throw new NotFoundError(`Ticket ${id} was not found!`)
+    if (!ticket) throw new NotFoundError(`Ticket was not found!`)
     if (user.role.type === "Admin" || user.id === ticket.sellerUser.id) {
 
       io.emit('action', {
