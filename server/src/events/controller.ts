@@ -1,6 +1,8 @@
 import {
   Authorized,
   Body,
+  CurrentUser,
+  ForbiddenError,
   Get,
   HttpCode,
   JsonController,
@@ -12,45 +14,10 @@ import {
 import {Event} from "./entity"
 import {io} from "../index"
 import {Ticket} from "../tickets/entity";
+import {User} from "../users/entity";
 
 @JsonController()
 export default class EventController {
-
-  @Authorized()
-  @Post('/events')
-  @HttpCode(201)
-  async createEvent() {
-    const entity = await Event.create().save()
-
-    const event = await Event.findOne(entity.id)
-
-    io.emit('action', {
-      type: 'ADD_EVENT',
-      payload: event
-    })
-
-    return event
-  }
-
-  @Authorized()
-  @Put('/events/:id')
-  @HttpCode(200)
-  async updateEvent(
-    @Param('id') id: string,
-    @Body() update: Partial<Event>
-  ) {
-    const event = await Event.findOne(id)
-    if (!event) throw new NotFoundError(`Event foes not exist`)
-
-    const updatedEvent = await Event.merge(event, update).save()
-
-    io.emit('action', {
-      type: 'UPDATE_EVENT',
-      payload: updatedEvent
-    })
-
-    return updatedEvent
-  }
 
   @Get('/events/:id')
   getEvent(
@@ -69,5 +36,47 @@ export default class EventController {
     @Param('id') id: number
   ) {
     return Ticket.find({where: {Event: id}})
+  }
+
+  @Authorized()
+  @Post('/events')
+  @HttpCode(201)
+  async createEvent(
+    @CurrentUser({ required: true }) user: User,
+  ) {
+    if (user.role.type !== "Admin") throw new ForbiddenError(`User not Authorised`)
+
+    const entity = await Event.create().save()
+
+    const event = await Event.findOne(entity.id)
+
+    io.emit('action', {
+      type: 'ADD_EVENT',
+      payload: event
+    })
+
+    return event
+  }
+
+  @Authorized()
+  @Put('/events/:id')
+  @HttpCode(200)
+  async updateEvent(
+    @Param('id') id: number,
+    @Body() update: Partial<Event>,
+    @CurrentUser({ required: true }) user: User
+  ) {
+    if (user.role.type !== "Admin") throw new ForbiddenError(`User not Authorised`)
+    const event = await Event.findOne(id)
+    if (!event) throw new NotFoundError(`Event was not found!`)
+
+    const updatedEvent = await Event.merge(event, update).save()
+
+    io.emit('action', {
+      type: 'UPDATE_EVENT',
+      payload: updatedEvent
+    })
+
+    return updatedEvent
   }
 }

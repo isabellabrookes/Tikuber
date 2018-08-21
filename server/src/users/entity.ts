@@ -12,7 +12,7 @@ class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   id?: number
 
-  @ManyToOne(_ => Role, role => role.type)
+  @ManyToOne(_ => Role, role => role.type, {eager:true})
   role: Role
 
   @IsString()
