@@ -14,14 +14,13 @@ const NavBar = (props) => {
   return (
     <AppBar position="absolute" style={{zIndex:10}}>
       <Toolbar>
-        <Typography variant="title" color="inherit" style={{flex: 1}}>
+        <Typography variant="display1" color="inherit" style={{flex: 1}}>
           Tikuber
         </Typography>
         {
           user &&
           <AccountMenu user={user} history={history} />
         }
-
         {
           !user && !location.pathname.includes('login') &&
           <Button color="inherit" onClick={() => history.push('/login')}>Login</Button>
@@ -31,8 +30,12 @@ const NavBar = (props) => {
           <Button color="inherit" onClick={() => history.push('/signup')}>Sign up</Button>
         }
         {
-          user && !location.pathname.includes('games/') &&
-          <Button color="inherit" onClick={() => history.push('/games')}>All Games</Button>
+          user && !location.pathname.includes('events/') &&
+          <Button color="inherit" onClick={() => history.push('/events')}>All Events</Button>
+        }
+        {
+          user && !location.pathname.includes('tickets/') &&
+          <Button color="inherit" onClick={() => history.push('/tickets')}>All Tickets</Button>
         }
         {
           /games$/.test(location.pathname) &&

@@ -3,11 +3,13 @@ import login from './login'
 import currentUser from './currentUser'
 import signup from './signup'
 import events from './events'
+import comments from './comments'
 
 export default {
-  users,
-  login,
   currentUser,
-  signup,
-  events
+  users,
+  events,
+  comments,
+  login,
+  signup
 }

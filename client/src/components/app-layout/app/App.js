@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './App.css'
-import NavBar from './components/app-layout/navbar/NavBar'
-import LandingPage from './components/app-layout/landing/LandingPage'
-import LoginPage from './components/user/login/LoginPage'
-import SignupPage from './components/user/signup/SignupPage'
-import LogoutPage from './components/user/logout/LogoutPage'
-import EventsList from './components/events/EventsList'
-import EventDetails from './components/events/EventDetails'
+import NavBarWrapper from '../navbar/NavBarWrapper'
+import LandingPage from '../landing/LandingPage'
+import LoginPage from '../../user/login/LoginPage'
+import SignupPage from '../../user/signup/SignupPage'
+import LogoutPage from '../../user/logout/LogoutPage'
+import EventsList from '../../events/EventsList'
+import EventDetails from '../../events/EventDetails'
 
 class App extends Component {
   render() {
@@ -15,7 +15,7 @@ class App extends Component {
       <Router>
         <div className='App'>
           <nav>
-            <NavBar />
+            <NavBarWrapper />
           </nav>
           <main style={{marginTop:75}}>
             <Route exact path="/" component={LandingPage} />
