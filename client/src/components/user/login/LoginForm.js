@@ -7,9 +7,9 @@ import InputLabel from '@material-ui/core/InputLabel/InputLabel'
 import Input from '@material-ui/core/Input/Input'
 import InputAdornment from '@material-ui/core/InputAdornment/InputAdornment'
 import IconButton from '@material-ui/core/IconButton/IconButton'
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import {withRouter} from 'react-router'
+import Visibility from '@material-ui/icons/Visibility'
+import VisibilityOff from '@material-ui/icons/VisibilityOff'
+import {Redirect} from 'react-router-dom'
 
 const styles = theme => ({
   container: {
@@ -44,7 +44,7 @@ class LoginForm extends PureComponent {
   handleClickShowPassword = (e) => {
     e.preventDefault()
     this.setState(state => ({ showPassword: !state.showPassword }))
-    this.props.history.push('/')
+    return (<Redirect to="/" />)
   }
 
 	render() {
@@ -85,4 +85,4 @@ class LoginForm extends PureComponent {
 }
 
 
-export default withRouter(withStyles(styles)(LoginForm))
+export default withStyles(styles)(LoginForm)

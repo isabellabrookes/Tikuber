@@ -1,15 +1,10 @@
 import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
 import './EventList.css'
-import {getUsers} from '../../actions/users'
-import {getEvents} from '../../actions/events'
 import EventCard from './EventCard'
 import Grid from '@material-ui/core/Grid/Grid'
 
 class EventsList extends PureComponent {
- componentWillMount(){
-   if (this.props.events === null) this.props.getEvents()
- }
   render() {
    const { events } = this.props
     return (
@@ -33,4 +28,4 @@ const mapStateToProps = state => ({
   events: state.events === null ? null : Object.values(state.events).sort((a, b) => new Date(b.startDate) - new Date(a.endDate))
 })
 
-export default connect(mapStateToProps, {getEvents, getUsers})(EventsList)
+export default connect(mapStateToProps)(EventsList)

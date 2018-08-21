@@ -15,7 +15,6 @@ class GamesList extends PureComponent {
   componentWillMount() {
     if (this.props.authenticated) {
       if (this.props.games === null) this.props.getGames()
-      if (this.props.users === null) this.props.getUsers()
     }
   }
 
@@ -83,4 +82,4 @@ const mapStateToProps = state => ({
     null : Object.values(state.games).sort((a, b) => b.id - a.id)
 })
 
-export default connect(mapStateToProps, {getGames, getUsers, createGame})(GamesList)
+export default connect(mapStateToProps, {getGames, createGame})(GamesList)

@@ -1,11 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {getEvents} from '../../actions/events'
 
 class EventDetails extends Component {
-  componentWillMount(){
-    if (this.props.events === null) this.props.getEvents()
-  }
 
   render() {
     const { event } = this.props
@@ -23,4 +19,4 @@ const mapPropsToState = (state, props) => ({
   event: props.events && props.events[props.match.params.id]
 })
 
-export default connect(mapPropsToState, {getEvents})(EventDetails)
+export default connect(mapPropsToState)(EventDetails)
