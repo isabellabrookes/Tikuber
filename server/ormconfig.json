@@ -10,6 +10,7 @@
     "target/comments/entity.js"
   ],
   "logging": true,
+  "synchronize": true,
   "migrations": ["target/migration/**/*.js"],
   "cli": {
     "entitiesDir": "src/entity",
