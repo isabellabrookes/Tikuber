@@ -12,6 +12,7 @@ import {
   ForbiddenError, Delete
 } from "routing-controllers";
 import {Ticket} from "./entity";
+import {Comment} from "../comments/entity";
 import {io} from "../index";
 import {User} from "../users/entity";
 
@@ -28,6 +29,13 @@ export default class TicketController {
   @Get('/tickets')
   getTickets() {
     return Ticket.find()
+  }
+
+  @Get('/tickets/:id/comments')
+  getTicketComments(
+    @Param('id') id: number
+  ){
+    return Comment.find({where: {Ticket: id}})
   }
 
   @Authorized()
@@ -59,9 +67,7 @@ export default class TicketController {
     @CurrentUser({ required: true }) user: User
   ) {
     const ticket = await Ticket.findOne(id)
-    if (!ticket) throw new NotFoundError(`Ticket was not found!`)
-    console.log(user.role.type)
-    console.log(ticket.sellerUser.id)
+    if (!ticket) throw new NotFoundError(`Ticket ${id} was not found!`)
     if (user.role.type === "Admin" || user.id === ticket.sellerUser.id) {
       const updatedTicket = await Ticket.merge(ticket, update).save()
 
@@ -83,7 +89,7 @@ export default class TicketController {
     @CurrentUser({ required: true }) user: User
   ) {
     const ticket = await Ticket.findOne(id)
-    if (!ticket) throw new NotFoundError(`Ticket was not found!`)
+    if (!ticket) throw new NotFoundError(`Ticket ${id} was not found!`)
     if (user.role.type === "Admin" || user.id === ticket.sellerUser.id) {
 
       io.emit('action', {
@@ -95,4 +101,5 @@ export default class TicketController {
       return ticket
     } throw new ForbiddenError(`User not Authorised`)
   }
+
 }
