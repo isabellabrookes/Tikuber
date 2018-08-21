@@ -27,5 +27,6 @@ export default async () =>{
   const config = await getConnectionOptions()
   Object.assign(config, { namingStrategy: new CustomNamingStrategy() })
   await createConnection(config)
+    .then(conn => conn.runMigrations())
     .then(_ => console.log('Connected to Postgres with TypeORM'))
 }
