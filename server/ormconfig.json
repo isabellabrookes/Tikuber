@@ -1,0 +1,19 @@
+{
+  "type": "postgres",
+  "url": "postgres://postgres:secret@localhost:5432/postgres",
+  "entities": [
+    "target/users/entity.js",
+    "target/users/roles/entity.js",
+    "target/events/entity.js",
+    "target/venues/entity.js",
+    "target/tickets/entity.js",
+    "target/comments/entity.js"
+  ],
+  "logging": true,
+  "migrations": ["target/migration/**/*.js"],
+  "cli": {
+    "entitiesDir": "src/entity",
+    "migrationsDir": "src/migration",
+    "subscribersDir": "src/subscriber"
+  }
+}

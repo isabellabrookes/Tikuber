@@ -1,4 +1,4 @@
-import {BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne} from 'typeorm'
+import {Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, BaseEntity} from 'typeorm'
 import { Exclude } from 'class-transformer'
 import { MinLength, IsString, IsEmail } from 'class-validator'
 import * as bcrypt from 'bcrypt'
