@@ -1,0 +1,17 @@
+.EventList {
+  height: 95vh; }
+
+.EventList-Card {
+  width: 350px;
+  height: 550px; }
+  .EventList-Card .EventList-Card-Image {
+    height: 200px; }
+  .EventList-Card .EventList-Card-Inner-Div {
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; }
+    .EventList-Card .EventList-Card-Inner-Div .EventList-Card-Buttons {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 50px; }
