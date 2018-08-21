@@ -11,7 +11,7 @@ import { Venue } from '../venues/entity'
 @Entity()
 class Event extends BaseEntity {
 
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: number
 
   @IsString()
@@ -34,10 +34,10 @@ class Event extends BaseEntity {
   @Column()
   endDate: Date
 
-  @ManyToOne(_ => Venue, venue => venue.events)
+  @ManyToOne(_ => Venue, venue => venue.events, {eager:true})
   venue: Venue
 
-  @OneToMany(_ => Ticket, ticket => ticket.event)
+  @OneToMany(_ => Ticket, ticket => ticket.event, {eager:true})
   tickets: Ticket[]
 }
 

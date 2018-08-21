@@ -11,6 +11,7 @@ import {
 } from "routing-controllers";
 import {Event} from "./entity"
 import {io} from "../index"
+import {Ticket} from "../tickets/entity";
 
 @JsonController()
 export default class EventController {
@@ -53,7 +54,7 @@ export default class EventController {
 
   @Get('/events/:id')
   getEvent(
-    @Param('id') id: number
+    @Param('id') id: string
   ) {
     return Event.findOne(id)
   }
@@ -61,5 +62,12 @@ export default class EventController {
   @Get('/events')
   getEvents() {
     return Event.find()
+  }
+
+  @Get('/events/:id/tickets')
+  getTicketsForEvent(
+    @Param('id') id: string
+  ) {
+    return Ticket.find({where: {Event: id}})
   }
 }

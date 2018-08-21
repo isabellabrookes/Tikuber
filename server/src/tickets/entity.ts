@@ -26,7 +26,7 @@ class Ticket extends BaseEntity {
 
   @IsString()
   @Column()
-  image: string
+  image?: string
 
   @ManyToOne(_ => Event, event => event.tickets)
   event: Event
