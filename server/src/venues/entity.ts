@@ -1,5 +1,5 @@
 import {BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
-import { IsString, IsNumber} from 'class-validator'
+import { IsString } from 'class-validator'
 import { Event } from '../events/entity'
 
 
@@ -17,9 +17,13 @@ class Venue extends BaseEntity {
   @Column()
   address: string
 
-  @IsNumber()
+  @IsString()
   @Column()
-  phone: number
+  phone: string
+
+  @IsString()
+  @Column()
+  website: string
 
   @OneToMany(_ => Event, events => events.venue)
   events: Event[]
