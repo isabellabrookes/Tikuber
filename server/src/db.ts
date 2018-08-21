@@ -7,6 +7,7 @@ import { Role } from './users/roles/entity'
 import { Ticket } from './tickets/entity'
 import { Event } from './events/entity'
 import { Comment } from './comments/entity'
+import {Venue} from "./venues/entity";
 
 class CustomNamingStrategy extends DefaultNamingStrategy implements NamingStrategyInterface {
 
@@ -35,6 +36,7 @@ export default async () =>{
       User,
       Role,
       Event,
+      Venue,
       Ticket,
       Comment
     ],

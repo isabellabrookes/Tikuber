@@ -2,10 +2,11 @@ import {
   BaseEntity,
   PrimaryGeneratedColumn,
   Entity,
-  Column, OneToMany,
+  Column, OneToMany, ManyToOne,
 } from 'typeorm'
 import { IsString, IsDate } from 'class-validator'
 import { Ticket } from '../tickets/entity'
+import { Venue } from '../venues/entity'
 
 @Entity()
 class Event extends BaseEntity {
@@ -32,6 +33,9 @@ class Event extends BaseEntity {
   @IsDate()
   @Column()
   endDate: Date
+
+  @ManyToOne(_ => Venue, venue => venue.events)
+  venue: Venue
 
   @OneToMany(_ => Ticket, ticket => ticket.event)
   tickets: Ticket[]
