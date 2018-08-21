@@ -11,7 +11,7 @@ import { Venue } from '../venues/entity'
 @Entity()
 class Event extends BaseEntity {
 
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn()
   id: number
 
   @IsString()

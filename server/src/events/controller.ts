@@ -54,7 +54,7 @@ export default class EventController {
 
   @Get('/events/:id')
   getEvent(
-    @Param('id') id: string
+    @Param('id') id: number
   ) {
     return Event.findOne(id)
   }
@@ -66,7 +66,7 @@ export default class EventController {
 
   @Get('/events/:id/tickets')
   getTicketsForEvent(
-    @Param('id') id: string
+    @Param('id') id: number
   ) {
     return Ticket.find({where: {Event: id}})
   }
