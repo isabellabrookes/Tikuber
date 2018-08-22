@@ -36,7 +36,7 @@ const EventsTickets = (props) => {
 
 const mapPropsToState = (state, props) => ({
   event: state.events && state.events[props.match.params.id],
-  eventTickets: state.tickets && state.events && Object.values(state.tickets).filter(ticket => ticket.event.id === parseInt(props.match.params.id))
+  eventTickets: state.tickets && state.events && Object.values(state.tickets).filter(ticket => ticket.event.id === parseInt(props.match.params.id, 10))
 })
 
 export default connect(mapPropsToState)(EventsTickets)

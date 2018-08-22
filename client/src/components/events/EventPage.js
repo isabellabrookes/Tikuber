@@ -23,7 +23,7 @@ class EventPage extends Component {
           spacing={8}>
           <Grid item xs={8}>
             <Paper className='Details-Paper'>
-              <img src={event.image} />
+              <img src={event.image} alt={event.name}/>
               <EventInfo event={event} description={event.description} />
             </Paper>
           </Grid>
@@ -51,7 +51,7 @@ class EventPage extends Component {
 
 const mapPropsToState = (state, props) => ({
   event: state.events && state.events[props.match.params.id],
-  eventTickets: state.tickets && state.events && Object.values(state.tickets).filter(ticket => ticket.event.id === parseInt(props.match.params.id))
+  eventTickets: state.tickets && state.events && Object.values(state.tickets).filter(ticket => ticket.event.id === parseInt(props.match.params.id, 10))
 
 })
 

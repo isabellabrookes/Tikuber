@@ -5,7 +5,7 @@ import {
   ManyToOne,
   Column, OneToMany,
 } from 'typeorm'
-import { IsString, IsNumber } from 'class-validator'
+import { IsString, IsNumber, IsDate } from 'class-validator'
 import { User } from '../users/entity'
 import { Event } from '../events/entity'
 import { Comment } from '../comments/entity'
@@ -34,11 +34,15 @@ class Ticket extends BaseEntity {
   @ManyToOne(_ => User, user => user.ticketsForSale, {eager:true})
   sellerUser: User
 
-  @OneToMany(_ => Comment, comment => comment.user)
+  @OneToMany(_ => Comment, comment => comment.user, {eager: true})
   comments: Comment[]
 
-  @ManyToOne(_ => User, user => user.ticketsPurchased)
+  @ManyToOne(_ => User, user => user.ticketsPurchased, {eager: true})
   buyerUser?: User
+
+  @IsDate()
+  @Column()
+  createdAt: Date
 
 }
 

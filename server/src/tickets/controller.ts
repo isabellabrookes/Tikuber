@@ -46,6 +46,7 @@ export default class TicketController {
   ){
     let entity = await Ticket.create()
     entity.event.id = eventId
+    entity.createdAt = new Date()
     entity.save()
 
     const ticket = await Ticket.findOne(entity.id)
