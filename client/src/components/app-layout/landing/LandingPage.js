@@ -4,7 +4,6 @@ import withStyles from '@material-ui/core/es/styles/withStyles'
 import Typography from '@material-ui/core/Typography/Typography'
 import Grid from '@material-ui/core/Grid/Grid'
 import Button from '@material-ui/core/Button/Button'
-import SearchBar from '../searchbar/SearchBar'
 
 const styles = theme => ({
   heroContent: {
@@ -30,9 +29,6 @@ class LandingPage extends Component {
               Buy and sell tickets with locals in your area
             </Typography>
             <div className={classes.heroButtons}>
-              <Grid container justify="center">
-                <SearchBar />
-              </Grid>
               <Grid container spacing={16} justify="center">
                 <Grid item>
                   <Button variant="contained" color="primary">

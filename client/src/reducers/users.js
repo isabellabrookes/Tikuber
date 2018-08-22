@@ -9,7 +9,7 @@ const users = (state = null, {type, payload}) => {
   switch (type) {
     case USER_LOGOUT:
       return null
-      
+
     case ADD_USER:
       return {
         ...state,
@@ -32,3 +32,39 @@ const users = (state = null, {type, payload}) => {
       return state
   }
 }
+
+let initialUserToken = null
+try {
+  const jwt = localStorage.getItem(localStorageJwtKey)
+  if (jwt) {
+    initialUserToken = { jwt }
+  }
+}
+catch (e) {
+  console.log(`Error retrieving data from local storage`, e)
+}
+
+const currentUser = (state = initialUserToken, {type, payload}) => {
+  switch (type) {
+    case USER_LOGIN_SUCCESS:
+      return payload
+
+    case USER_LOGOUT:
+      return null
+
+    default:
+      return state
+  }
+}
+
+// const user = (state = {}, action: Action) => {
+//   const jwt = users()
+//   const currentUser = currentUser()
+//   if (users === null && currentUser === null) return null
+//   console.log(currentUser)
+//   console.log(currentUser.jwt)
+//   // return console.log(users[userId(currentUser.jwt)])
+//   return null
+// }
+
+export {users, currentUser}
