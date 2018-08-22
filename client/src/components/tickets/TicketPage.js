@@ -16,7 +16,7 @@ class TicketPage extends Component {
 
   render() {
     const { ticket, tickets, eventsTickets } = this.props
-    const risk = calculateRiskFactor(ticket, tickets, eventsTickets)
+    const risk = ticket && tickets && eventsTickets && calculateRiskFactor(ticket, tickets, eventsTickets)
     return (
       <div className='Container-Div'>
         {ticket === null && <Loading />}
@@ -30,7 +30,7 @@ class TicketPage extends Component {
               <Typography gutterBottom variant="display1" component="h1"> <AccountIcon />{ticket.sellerUser.firstName}</Typography>
               <Typography gutterBottom variant="display1" component="h1" className={risk.riskClass}> <Warning />Risk: {risk.riskFactor}%</Typography>
               <Typography gutterBottom variant="display1" component="h1" color='primary'> <EuroSymbol />{ticket.price}</Typography>
-              <div className='centered-flex'><Button href={`/events/${ticket.event.id}`} variant='contained' color='secondary'>Buy</Button></div>
+              <div className='centered-flex'><Button onClick={()=>window.open(`https://bunq.me/isabella/${ticket.price}`)} variant='contained' color='secondary'>Buy</Button></div>
               </div>
             </Grid>
             <Grid item xs={6} className='padding-1'>
