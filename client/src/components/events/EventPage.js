@@ -33,7 +33,7 @@ class EventPage extends Component {
           <Grid item xs={12} sm={6}>
             <Paper className='Details-Paper'>
               {eventTickets && eventTickets.length ? (<div className='center-align-flex'>
-                <Button className='padding-1' style={{margin: '0.5em auto'}} href={`/events/${event.id}/tickets`} variant="contained" color="secondary">
+                <Button className='padding-1' style={{margin: '1em'}} href={`/events/${event.id}/tickets`} variant="contained" color="secondary">
                   SEE ALL TICKETS
                 </Button>
                 {eventTickets.map(ticket => <TicketCard parent={'EventDetails'} ticket={ticket}/>)}

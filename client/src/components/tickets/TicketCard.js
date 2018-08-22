@@ -41,7 +41,7 @@ const TicketCard = (props) => {
             <Typography>EventDetails</Typography>
           </div>}
           <div className='center-align-flex'>
-            {dateClass === 'Event-Finished' ? <Typography color='secondary'>Event has finished</Typography> : <Button href={`/tickets/${ticket.id}`} variant='contained' color='primary'>Buy Ticket</Button>}
+            {dateClass === 'Event-Finished' ? <Typography color='secondary'>Event has finished</Typography> : <Button href={`/tickets/${ticket.id}`} variant='contained' color='primary'>See Ticket</Button>}
           </div>
         </Grid>
       </Grid>
