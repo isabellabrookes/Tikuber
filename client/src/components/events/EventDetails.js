@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography/Typography'
 import Moment from 'react-moment'
 import Grid from '@material-ui/core/Grid/Grid'
 import Card from '@material-ui/core/Card/Card'
-import Button from '../../../node_modules/@material-ui/core/Button/Button'
+import Button from '@material-ui/core/Button/Button'
 
 class EventDetails extends Component {
 
@@ -39,7 +39,7 @@ class EventDetails extends Component {
           </Grid>
           <Grid item xs={4}>
             <Paper className='Details-Paper'>
-              {event.tickets.length ? event.tickets.map(ticket => <TicketCard ticket={ticket}/>) : <Card className='centered-flex' style={{padding: '1em', height:'100vh'}}>
+              {event.tickets.length ? event.tickets.map(ticket => <TicketCard parent={'EventDetails'} ticket={ticket}/>) : <Card className='centered-flex' style={{padding: '1em', height:'100vh'}}>
                 <Typography variant="title" style={{color: 'red'}}>No tickets for sale currently, sell yours!</Typography>
                 <Button href={'/sell'} variant="contained" color="secondary">
                   Sell Tickets

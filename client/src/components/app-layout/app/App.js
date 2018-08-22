@@ -11,6 +11,7 @@ import EventDetails from '../../events/EventDetails'
 import TicketsList from '../../tickets/TicketsList'
 import SellTickets from '../../tickets/selltickets/SellTickets'
 import Ticket from '../../tickets/TicketDetails'
+import EventsTickets from '../../events/EventsTickets'
 
 class App extends Component {
   render() {
@@ -30,7 +31,7 @@ class App extends Component {
             <Route exact path="/tickets" component={TicketsList} />
             <Route exact path="/sell" component={SellTickets} />
             <Route exact path="/tickets/:id" component={Ticket} />
-            {/*<Route exact path="/events/:id" component={GameDetails} />*/}
+            <Route exact path="/events/:id/tickets" component={EventsTickets} />
           </main>
         </div>
       </Router>

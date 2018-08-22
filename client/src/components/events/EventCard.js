@@ -30,8 +30,8 @@ const EventCard = (props) => {
           <Typography component="p">{description}</Typography>
         </CardContent>
         <CardActions className='EventList-Card-Buttons'>
-          <Button href={`/events/${event.id}`} size="small"  color="default">See More</Button>
-          <Button href={`/events/sell`} eventId={event.id} size="small" color="primary">Sell Tickets</Button>
+          <Button href={`/events/${event.id}`} size="small"  color="default">See Event</Button>
+          <Button href={`/sell`} eventId={event.id} size="small" color="primary">Sell Tickets</Button>
           <Button href={`/events/${event.id}/tickets`} size="small" color="secondary">Buy Tickets</Button>
         </CardActions>
       </div>

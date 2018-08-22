@@ -28,3 +28,5 @@
       border-top-left-radius: 1em; }
     .Container-Div .Details-Paper .Details-Paper-Inner-Div {
       padding: 1em; }
+    .Container-Div .Details-Paper.Details-Paper-Inner-Div {
+      padding: 1em; }
