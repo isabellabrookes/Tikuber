@@ -10,15 +10,11 @@ const NavBar = (props) => {
   const { location, history, user } = props
 
   return (
-    <AppBar position="absolute" style={{zIndex:10}}>
+    <AppBar position="absolute" style={{zIndex:10, backgroundColor:'rgba(255,255,255,0.1)'}} >
       <Toolbar>
-        <Typography variant="display1" color="inherit" style={{flex: 1}}>
-          Tikuber
-        </Typography>
-        {
-          user &&
-          <AccountMenu user={user} history={history} />
-        }
+        <Button color="inherit" onClick={() => history.push('/login')} style={{flex: 1, alignItems: 'flex-start'}}>
+          <Typography variant="display1" color="inherit" >Tikuber</Typography>
+        </Button>
         {
           !user && !location.pathname.includes('login') &&
           <Button color="inherit" onClick={() => history.push('/login')}>Login</Button>
@@ -28,12 +24,16 @@ const NavBar = (props) => {
           <Button color="inherit" onClick={() => history.push('/signup')}>Sign up</Button>
         }
         {
+          user && !location.pathname.includes('tickets/') &&
+          <Button variant='contained' color="secondary" onClick={() => history.push('/tickets')}>All Tickets</Button>
+        }
+        {
           user && !location.pathname.includes('events/') &&
           <Button color="inherit" onClick={() => history.push('/events')}>All Events</Button>
         }
         {
-          user && !location.pathname.includes('tickets/') &&
-          <Button color="inherit" onClick={() => history.push('/tickets')}>All Tickets</Button>
+          user &&
+          <AccountMenu user={user} history={history} />
         }
       </Toolbar>
     </AppBar>

@@ -15,7 +15,6 @@ const EventCard = (props) => {
   const startTime = <Moment format="HH:mm">{event.startDate}</Moment>
   const endTime = <Moment format="HH:mm">{event.endDate}</Moment>
   const description = event.description.substring(0,100)+'...'
-  console.log(startDate)
   return (
     <Card className='EventList-Card'>
       <CardMedia className='EventList-Card-Image'
@@ -27,12 +26,12 @@ const EventCard = (props) => {
         <CardContent>
           <Typography gutterBottom variant="display1" component="h1">{event.name}</Typography>
           <Typography variant="title">{event.venue.name}</Typography>
-          <Typography variant="subheading" component="h3"> {startTime} - {endTime}, {endDate} </Typography>
+          <Typography gutterBottom variant="subheading" component="h3"> {startTime} - {endTime}, {endDate} </Typography>
           <Typography component="p">{description}</Typography>
         </CardContent>
         <CardActions className='EventList-Card-Buttons'>
           <Button href={`/events/${event.id}`} size="small"  color="default">See More</Button>
-          <Button href={`/events/${event.id}/tickets/sell`} size="small" color="primary">Sell Tickets</Button>
+          <Button href={`/events/sell`} eventId={event.id} size="small" color="primary">Sell Tickets</Button>
           <Button href={`/events/${event.id}/tickets`} size="small" color="secondary">Buy Tickets</Button>
         </CardActions>
       </div>

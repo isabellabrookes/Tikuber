@@ -36,7 +36,7 @@ class LandingPage extends Component {
                   </Button>
                 </Grid>
                 <Grid item>
-                  <Button href={'/tickets/sell'} variant="contained" color="secondary">
+                  <Button href={'/sell'} variant="contained" color="secondary">
                     Sell Tickets
                   </Button>
                 </Grid>

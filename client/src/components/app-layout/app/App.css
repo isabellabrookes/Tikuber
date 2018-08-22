@@ -5,8 +5,7 @@
     height: 10vh;
     width: 100vw; }
   .Container-Div main {
-    height: 90vh;
-    width: 100vw; }
+    padding: 1em; }
   .Container-Div .centered-flex {
     display: flex;
     flex-direction: column;
@@ -18,3 +17,14 @@
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 1em;
     text-align: center; }
+  .Container-Div .Details-Paper {
+    margin-top: 1em;
+    border-radius: 1em; }
+    .Container-Div .Details-Paper img {
+      width: 100%;
+      height: 400px;
+      margin: auto;
+      border-top-right-radius: 1em;
+      border-top-left-radius: 1em; }
+    .Container-Div .Details-Paper .Details-Paper-Inner-Div {
+      padding: 1em; }

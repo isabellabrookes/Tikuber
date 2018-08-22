@@ -16,7 +16,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className='Container-Div'>
+        <div className='App Container-Div'>
           <nav>
             <NavBarWrapper />
           </nav>
@@ -28,8 +28,8 @@ class App extends Component {
             <Route exact path="/events" component={EventsList} />
             <Route exact path="/events/:id" component={EventDetails} />
             <Route exact path="/tickets" component={TicketsList} />
+            <Route exact path="/sell" component={SellTickets} />
             <Route exact path="/tickets/:id" component={Ticket} />
-            <Route exact path="/tickets/sell" component={SellTickets} />
             {/*<Route exact path="/events/:id" component={GameDetails} />*/}
           </main>
         </div>
