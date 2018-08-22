@@ -14,6 +14,7 @@ import Button from '../../../node_modules/@material-ui/core/Button/Button'
 class TicketPage extends Component {
   render() {
     const { tickets, ticket, eventsTickets } = this.props
+
     const averageTicketPrice = () => {
       if (eventsTickets) {
         return (eventsTickets.reduce((total, eventTicket) => total + parseFloat(eventTicket.price), 0) / eventsTickets.length).toFixed(2)
@@ -26,8 +27,10 @@ class TicketPage extends Component {
       risk = calculateRiskOfPrice(risk)
       risk = calculateRiskBusinessHours(risk)
       risk = calculateRiskNumberComments(risk)
-      console.log('risk: ' + risk)
-      return Math.round(risk)
+      risk = Math.round(risk)
+      risk = Math.min(risk, 98)
+      risk = Math.max(risk, 2)
+      return risk
     }
 
     const calculateRiskOfOnlyTicket = risk => {
@@ -44,12 +47,16 @@ class TicketPage extends Component {
         return risk - 15
       } else if (ticket.price < averagePrice){
         return risk + ticket.price/averagePrice * 100
-      }
+      } else return risk
     }
 
     const calculateRiskBusinessHours = risk => {
-      
-      return risk
+      const date = new Date(ticket.createdAt)
+      const hours = date.getHours()
+      const mins = (date.getMinutes().toString().length === 1 ) ? '0'+date.getMinutes().toString() :date.getMinutes()
+      const time = parseInt(`${hours}${mins}`)
+      if (time >= 900 && hours <= 1700) return risk - 13
+      return risk + 13
     }
 
     const calculateRiskNumberComments = risk => {
@@ -63,10 +70,10 @@ class TicketPage extends Component {
         {!ticket && <NotFound message={`Ticket ${this.props.match.params.id}`}/>}
         {ticket &&
         <Paper className='Details-Paper'>
-          <img src={ticket.image} alt={`ticket for sale for ${ticket.event.name}`}/>
           <Grid container spacing={8}>
             <Grid item xs={6} className='padding-1'>
-              <div className='padding-1'>
+              <img src={ticket.image} alt={`ticket for sale for ${ticket.event.name}`}/>
+              <div className='padding-1' style={{borderLeft: '2px solid blue'}}>
               <Typography gutterBottom variant="display1" component="h1"> <AccountIcon />{ticket.sellerUser.firstName}</Typography>
               <Typography gutterBottom variant="display1" component="h1" color='secondary'> <Warning />Risk: {calculateRiskFactor()}%</Typography>
               <Typography gutterBottom variant="display1" component="h1" color='primary'> <EuroSymbol />{ticket.price}</Typography>
@@ -74,6 +81,7 @@ class TicketPage extends Component {
               </div>
             </Grid>
             <Grid item xs={6} className='padding-1'>
+              <img src={ticket.event.image} alt={`ticket for sale for ${ticket.event.name}`}/>
               <EventInfo event={ticket.event} description={''}/>
               <Typography>Average Price of Tickets: €{averageTicketPrice()}</Typography>
               <div className='centered-flex'><Button href={`/events/${ticket.event.id}`} variant='contained' color='primary'>Back to Event</Button></div>
