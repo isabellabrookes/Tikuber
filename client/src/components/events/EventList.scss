@@ -3,13 +3,12 @@
 }
 
 .EventList-Card {
-  width: 350px;
-  height: 550px;
+  height: 85vh;
+  margin-bottom: 1em;
   .EventList-Card-Image {
     height:200px;
   }
   .EventList-Card-Inner-Div{
-    height: 350px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

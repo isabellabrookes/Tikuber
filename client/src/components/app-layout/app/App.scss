@@ -48,9 +48,17 @@
       padding: 1em;
     }
   }
-}
 
-//.App {
-//  background: url("../../../_assets/img/rachel-lynette-french-609252-unsplash.jpg") repeat center center fixed;
-//  background-size: cover;
-//}
+  .Event-Finished {
+    background-color: lightgrey;
+    opacity: 0.5;
+  }
+
+  .padding-1 {
+    padding: 1em;
+  }
+
+  .margin-1 {
+    margin: 0 1em;
+  }
+}

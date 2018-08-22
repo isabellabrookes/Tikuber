@@ -10,7 +10,7 @@ import EventsList from '../../events/EventsList'
 import EventDetails from '../../events/EventPage'
 import TicketsList from '../../tickets/TicketsList'
 import SellTickets from '../../tickets/selltickets/SellTickets'
-import Ticket from '../../tickets/TicketDetails'
+import Ticket from '../../tickets/TicketPage'
 import EventsTickets from '../../events/EventsTickets'
 
 class App extends Component {

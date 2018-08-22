@@ -37,7 +37,7 @@ class Event extends BaseEntity {
   @ManyToOne(_ => Venue, venue => venue.events, {eager:true})
   venue: Venue
 
-  @OneToMany(_ => Ticket, ticket => ticket.event, {eager:true})
+  @OneToMany(_ => Ticket, ticket => ticket.event)
   tickets: Ticket[]
 
 }

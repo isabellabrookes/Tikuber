@@ -33,3 +33,10 @@
       padding: 1em; }
     .Container-Div .Details-Paper.Details-Paper-Inner-Div {
       padding: 1em; }
+  .Container-Div .Event-Finished {
+    background-color: lightgrey;
+    opacity: 0.5; }
+  .Container-Div .padding-1 {
+    padding: 1em; }
+  .Container-Div .margin-1 {
+    margin: 0 1em; }

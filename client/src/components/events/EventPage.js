@@ -12,8 +12,7 @@ import EventInfo from './EventInfo'
 
 class EventPage extends Component {
   render() {
-    const { event } = this.props
-
+    const { event, eventTickets } = this.props
     return (
       <div>
         {event === null && <Loading />}
@@ -30,11 +29,11 @@ class EventPage extends Component {
           </Grid>
           <Grid item xs={4}>
             <Paper className='Details-Paper'>
-              {event.tickets.length ? (<div className='center-align-flex'>
+              {eventTickets && eventTickets.length ? (<div className='center-align-flex'>
                 <Button style={{margin: 'auto'}}href={`/events/${event.id}/tickets`} variant="contained" color="secondary">
                   SEE ALL TICKETS
                 </Button>
-                {event.tickets.map(ticket => <TicketCard parent={'EventDetails'} ticket={ticket}/>)}
+                {eventTickets.map(ticket => <TicketCard parent={'EventDetails'} ticket={ticket}/>)}
               </div>) : <Card className='centered-flex' style={{padding: '1em', height:'100vh'}}>
                 <Typography variant="title" style={{color: 'red'}}>No tickets for sale currently, sell yours!</Typography>
                 <Button href={'/sell'} variant="contained" color="secondary">
@@ -51,7 +50,9 @@ class EventPage extends Component {
 }
 
 const mapPropsToState = (state, props) => ({
-  event: state.events && state.events[props.match.params.id]
+  event: state.events && state.events[props.match.params.id],
+  eventTickets: state.tickets && state.events && Object.values(state.tickets).filter(ticket => ticket.event.id === parseInt(props.match.params.id))
+
 })
 
 export default connect(mapPropsToState)(EventPage)

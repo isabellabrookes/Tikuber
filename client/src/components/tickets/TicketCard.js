@@ -6,9 +6,11 @@ import AccountIcon from '@material-ui/icons/AccountCircle'
 
 const TicketCard = (props) => {
   const {ticket, parent} = props
+  const dateClass = new Date() > new Date(ticket.event.endDate) ? 'Event-Finished' : 'Event-Live'
   return (
-    <Card>
+    <Card className={`${dateClass} padding-1 margin-1`}>
       <Typography><AccountIcon />{ticket.sellerUser.firstName}</Typography>
+      <Typography>{ticket.price}</Typography>
       {parent === 'TicketsList' && <div>
         <Typography>TicketList</Typography>
       </div>}
@@ -18,7 +20,7 @@ const TicketCard = (props) => {
       {parent === 'EventDetails' && <div>
         <Typography>EventDetails</Typography>
       </div>}
-      <Button href={`/tickets/${ticket.id}`} variant='contained' color='primary'>Buy Ticket</Button>
+      {dateClass === 'Event-Finished' ? <Typography color='secondary'>Event has finished</Typography> :<Button href={`/tickets/${ticket.id}`} variant='contained' color='primary'>Buy Ticket</Button>}
     </Card>
   )
 }

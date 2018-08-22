@@ -7,16 +7,17 @@ import Grid from '@material-ui/core/Grid/Grid'
 class EventsList extends PureComponent {
   render() {
    const { events } = this.props
+
     return (
       <div className='EventList'>
         <Grid container
               className='EventList'
-              spacing={40}
+              spacing={16}
               direction="row"
               justify="space-around"
               alignItems="center"
         >
-          { events && events.map(event => <Grid key={event.id} item><EventCard  event={event}/></Grid>)}
+          { events && events.map(event => <Grid key={event.id} item sm={3}><EventCard event={event}/></Grid>)}
         </Grid>
       </div>
     )
