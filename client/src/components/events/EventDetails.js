@@ -1,5 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import Loading from '../app-layout/Loading'
+import NotFound from '../app-layout/NotFound'
+import TicketCard from '../tickets/TicketCard'
 
 class EventDetails extends Component {
 
@@ -7,8 +10,15 @@ class EventDetails extends Component {
     const { event } = this.props
     console.log(event)
     return (
-      <div>
-        {this.props.event.name}
+      <div className='Container-Div'>
+        {event === null && <Loading />}
+        {!event && <NotFound message={`Event ${this.props.match.params.id}`}/>}
+        {event &&
+        <div>
+          Event {event.name}
+          {event.tickets.length ? event.tickets.map(ticket => <TicketCard ticket={ticket}/>) : <div>No tickets for sale currently, sell yours!</div>}
+        </div>
+        }
       </div>
     )
   }
@@ -16,7 +26,7 @@ class EventDetails extends Component {
 
 const mapPropsToState = (state, props) => ({
   events: state.events,
-  event: props.events && props.events[props.match.params.id]
+  event: state.events && state.events[props.match.params.id]
 })
 
 export default connect(mapPropsToState)(EventDetails)

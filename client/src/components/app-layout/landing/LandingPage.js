@@ -31,17 +31,17 @@ class LandingPage extends Component {
             <div className={classes.heroButtons}>
               <Grid container spacing={16} justify="center">
                 <Grid item>
-                  <Button variant="contained" color="primary">
+                  <Button href={'/events'} variant="contained" color="primary">
                     See Events
                   </Button>
                 </Grid>
                 <Grid item>
-                  <Button variant="contained" color="secondary">
+                  <Button href={'/tickets/sell'} variant="contained" color="secondary">
                     Sell Tickets
                   </Button>
                 </Grid>
                 <Grid item>
-                  <Button variant="contained" color="primary">
+                  <Button href={'/tickets'} variant="contained" color="primary">
                     Find Tickets
                   </Button>
                 </Grid>
