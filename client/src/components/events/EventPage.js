@@ -20,17 +20,20 @@ class EventPage extends Component {
         {event &&
         <Grid
           container
+          direction="row"
+          justify="space-around"
+          alignItems="stretch"
           spacing={8}>
-          <Grid item xs={8}>
+          <Grid item xs={12} sm={6}>
             <Paper className='Details-Paper'>
               <img src={event.image} alt={event.name}/>
               <EventInfo event={event} description={event.description} />
             </Paper>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={6}>
             <Paper className='Details-Paper'>
               {eventTickets && eventTickets.length ? (<div className='center-align-flex'>
-                <Button style={{margin: 'auto'}}href={`/events/${event.id}/tickets`} variant="contained" color="secondary">
+                <Button className='padding-1' style={{margin: '0.5em auto'}} href={`/events/${event.id}/tickets`} variant="contained" color="secondary">
                   SEE ALL TICKETS
                 </Button>
                 {eventTickets.map(ticket => <TicketCard parent={'EventDetails'} ticket={ticket}/>)}

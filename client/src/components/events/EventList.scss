@@ -3,6 +3,9 @@
 }
 
 .EventList-Card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   height: 85vh;
   margin-bottom: 1em;
   .EventList-Card-Image {
@@ -15,7 +18,6 @@
     .EventList-Card-Buttons{
       display: flex;
       justify-content: space-around;
-      margin-top: 50px;
     }
   }
 

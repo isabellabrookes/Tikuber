@@ -15,9 +15,8 @@ class EventsList extends PureComponent {
               spacing={16}
               direction="row"
               justify="space-around"
-              alignItems="center"
         >
-          { events && events.map(event => <Grid key={event.id} item sm={3}><EventCard event={event}/></Grid>)}
+          { events && events.map(event => <Grid key={event.id} item xs={12} sm={6} md={3}><EventCard event={event}/></Grid>)}
         </Grid>
       </div>
     )
