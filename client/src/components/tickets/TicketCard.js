@@ -2,12 +2,13 @@ import React from 'react'
 import Card from '@material-ui/core/Card/Card'
 import Typography from '@material-ui/core/Typography/Typography'
 import Button from '@material-ui/core/Button/Button'
+import AccountIcon from '@material-ui/icons/AccountCircle'
 
 const TicketCard = (props) => {
   const {ticket, parent} = props
   return (
     <Card>
-      <Typography>{ticket.id}</Typography>
+      <Typography><AccountIcon />{ticket.sellerUser.firstName}</Typography>
       {parent === 'TicketsList' && <div>
         <Typography>TicketList</Typography>
       </div>}

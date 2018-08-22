@@ -11,6 +11,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center; }
+  .Container-Div .center-align-flex {
+    display: flex;
+    flex-direction: column; }
   .Container-Div .Component-Status {
     height: 50vh;
     width: 75vw;

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
@@ -8,8 +7,7 @@ import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { withStyles } from '@material-ui/core/styles';
-import AccountIcon from '@material-ui/icons/AccountBox'
-import {Redirect} from 'react-router-dom'
+import AccountIcon from '@material-ui/icons/AccountCircle'
 
 const styles = theme => ({
   root: {
@@ -55,7 +53,7 @@ class AccountMenu extends React.Component {
             onClick={this.handleToggle}
             color={'inherit'}
           >
-            <AccountIcon /> { user.firstName }
+            <AccountIcon /> Hello, { user.firstName }
           </Button>
           <Popper open={open} anchorEl={this.anchorEl} transition disablePortal>
             {({ TransitionProps, placement }) => (
@@ -81,9 +79,5 @@ class AccountMenu extends React.Component {
     );
   }
 }
-
-AccountMenu.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(AccountMenu);
