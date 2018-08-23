@@ -27,11 +27,11 @@ const calculateRiskOfOnlyTicket = (risk, ticket, tickets) => {
 const calculateRiskOfPrice = (risk, ticket, eventsTickets) => {
   const averagePrice = averageTicketPrice(eventsTickets)
   if (ticket.price > averagePrice) {
-    const percentDifference = risk + averagePrice/ticket.price * 100
+    const percentDifference = averagePrice/ticket.price * 100
     if (percentDifference < 15) return risk - percentDifference
     return risk - 15
   } else if (ticket.price < averagePrice){
-    return risk + ticket.price/averagePrice * 100
+    return risk + (100-ticket.price/averagePrice * 100)
   } else return risk
 }
 
