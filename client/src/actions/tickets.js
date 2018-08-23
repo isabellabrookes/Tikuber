@@ -29,7 +29,7 @@ export const getTickets = () => dispatch => {
     .catch(err => console.error(err))
 }
 
-export const createTicket = (price, description, image, sellerUser, createdAt) => (dispatch, getState) => {
+export const createTicket = (price, description, image, sellerUser, event) => (dispatch, getState) => {
   const state = getState()
   if (!state.currentUser) return null
   const jwt = state.currentUser.jwt
@@ -38,7 +38,7 @@ export const createTicket = (price, description, image, sellerUser, createdAt) =
   request
     .post(`${baseUrl}/tickets`)
     .set('Authorization', `Bearer ${jwt}`)
-    .send({price, description, image, sellerUser, createdAt})
+    .send({price, description, image, sellerUser, event})
     .then(result =>dispatch(addTicket(result.body)))
     .catch(err => console.log(err))
 }

@@ -22,7 +22,6 @@ class LandingPage extends Component {
 
     return (
       <div id={'LandingPage-Main'}>
-        {/*Hero Unit*/}
         <div className={'heroUnit'}>
           <div className={classes.heroContent}>
             <Typography variant="display3" align="center" color="inherit" gutterBottom>

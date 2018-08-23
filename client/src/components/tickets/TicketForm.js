@@ -58,7 +58,7 @@ class TicketForm extends Component {
           margin="normal"
           >
             {events && Object.values(events).map(event => (
-              <MenuItem key={event.id} value={event.id}>
+              <MenuItem key={event.id} value={event}>
                 <Moment format="YYYY/MM/DD" style={{marginRight: "1em"}}>{event.startDate}</Moment> {event.name}
               </MenuItem>
             ))}

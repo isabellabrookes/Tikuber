@@ -12,7 +12,7 @@ const NavBar = (props) => {
   return (
     <AppBar position="absolute" style={{zIndex:10, backgroundColor:'rgba(255,255,255,0.1)'}} >
       <Toolbar>
-        <Button color="inherit" onClick={() => history.push('/login')} style={{flex: 1, alignItems: 'flex-start'}}>
+        <Button color="inherit" onClick={() => history.push('/')} style={{flex: 1, alignItems: 'flex-start'}}>
           <Typography variant="display1" color="inherit" >Tikuber</Typography>
         </Button>
         {
