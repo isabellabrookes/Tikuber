@@ -13,7 +13,6 @@ import {
 import {Comment} from "./entity";
 import {User} from "../users/entity";
 import {io} from "../index";
-import {Ticket} from "../tickets/entity";
 
 @JsonController()
 export default class CommentController {
