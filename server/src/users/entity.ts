@@ -35,13 +35,13 @@ class User extends BaseEntity {
   @Exclude({ toPlainOnly: true })
   password: string
 
-  @OneToMany(_ => Ticket, ticket => ticket.sellerUser)
+  @OneToMany(_ => Ticket, ticket => ticket.sellerUser, {eager:false})
   ticketsForSale?: Ticket[]
 
-  @OneToMany(_ => Ticket, ticket => ticket.buyerUser)
+  @OneToMany(_ => Ticket, ticket => ticket.buyerUser, {eager:false})
   ticketsPurchased?: Ticket[]
 
-  @OneToMany(_ => Comment, comment => comment.user)
+  @OneToMany(_ => Comment, comment => comment.user, { lazy: true })
   comments: Comment[]
 
 

@@ -1,4 +1,5 @@
 import * as request from 'superagent'
+import {baseUrl} from '../constants'
 
 const handleImageUpload = (file, uploadPreset, imageHandler) => {
   request
@@ -9,4 +10,13 @@ const handleImageUpload = (file, uploadPreset, imageHandler) => {
     .catch(err=> console.log(err))
 }
 
-export {handleImageUpload}
+const getCommentUser = (commentId, user) => {
+  request
+    .get(`${baseUrl}/comments/${commentId}`)
+    .then(response => user(response.body['__user__']))
+    .catch(err => console.log(err))
+}
+
+
+
+export {handleImageUpload, getCommentUser}

@@ -34,7 +34,7 @@ class Ticket extends BaseEntity {
   @ManyToOne(_ => User, user => user.ticketsForSale, {eager:true})
   sellerUser: User
 
-  @OneToMany(_ => Comment, comment => comment.user, {eager: true})
+  @OneToMany(_ => Comment, comment => comment.ticket, {eager: true})
   comments: Comment[]
 
   @ManyToOne(_ => User, user => user.ticketsPurchased, {eager: true})

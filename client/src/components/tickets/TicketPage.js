@@ -46,7 +46,7 @@ class TicketPage extends Component {
             <Grid item xs={12}>
               <Grid container direction='column' spacing={8}>
               <Typography gutterBottom variant="display1" component="h1" style={{textAlign: 'center'}}>Comments</Typography>
-                {ticket.comments.map(comment => <Grid item><CommentCard key={comment.id} comment={comment} /></Grid>)}
+                {ticket.comments.map(comment => <Grid item key={comment.id}><CommentCard comment={comment} /></Grid>)}
               </Grid>
             </Grid>
           </Grid>

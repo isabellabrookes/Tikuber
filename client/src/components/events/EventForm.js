@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {userId} from '../../jwt'
 import connect from 'react-redux/es/connect/connect'
-import {handleImageUpload} from '../../lib/ImageUploads'
+import {handleImageUpload} from '../../lib/APIcalls'
 import Dropzone from 'react-dropzone'
 import Typography from '@material-ui/core/Typography/Typography'
 import FormControl from '@material-ui/core/FormControl/FormControl'
