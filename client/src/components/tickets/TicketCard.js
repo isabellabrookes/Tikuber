@@ -38,9 +38,9 @@ const TicketCard = (props) => {
   return (
     <Card className={`${dateClass} ${soldClass} padding-1 margin-1 ${riskFactor.riskClass}`}>
       <Grid container spacing={24} direction={`${gridProperties.outerGridDirection}`} alignItems="stretch">
-        {parent === 'TicketsList' && <Grid item xs={gridProperties.outerGridxs} sm={gridProperties.outerGridsm} className='centered-flex-column'><img src={ticket.event.image} alt={`Ticket for sale for ${ticket.event}`} style={{height: '150px', borderRadius:'0.5em'}}/></Grid>}
+        {parent === 'TicketsList' && <Grid item xs={gridProperties.outerGridxs} sm={gridProperties.outerGridsm} className='centered-flex-column'><img src={ticket.event.image} alt={`Ticket for sale for ${ticket.event}`} style={{height: '20vh', maxWidth: '40vw', borderRadius:'0.5em'}}/></Grid>}
         {parent === 'TicketsList' && <Grid item xs={gridProperties.outerGridxs} sm={gridProperties.outerGridsm}><EventInfo event={ticket.event}/></Grid>}
-        {parent !== 'EventPage' && <Grid item xs={gridProperties.outerGridxs} sm={gridProperties.outerGridsm} className='centered-flex-column'><img src={ticket.image} alt={`Ticket for sale for ${ticket.event}`} style={{height: '100px', borderRadius:'0.5em'}}/></Grid>}
+        {parent !== 'EventPage' && <Grid item xs={gridProperties.outerGridxs} sm={gridProperties.outerGridsm} className='centered-flex-column'><img src={ticket.image} alt={`Ticket for sale for ${ticket.event}`} style={{height: '20vh', maxWidth: '40vw', borderRadius:'0.5em'}}/></Grid>}
         <Grid item xs={gridProperties.outerGridxs} sm={gridProperties.outerGridsm} clas >
           <Grid container direction={`${gridProperties.innerGridDirection}`} justify="space-evenly" alignItems="center" className={`Ticket-Card-Info height-100`}>
             <Grid item xs={6} sm={3} >
