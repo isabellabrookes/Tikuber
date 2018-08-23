@@ -8,6 +8,7 @@ import FormControl from '@material-ui/core/FormControl/FormControl'
 import TextField from '@material-ui/core/TextField/TextField'
 import Grid from '@material-ui/core/Grid/Grid'
 import MenuItem from '@material-ui/core/MenuItem/MenuItem'
+import Button from '@material-ui/core/Button/Button'
 
 class EventForm extends Component {
   state = {
@@ -48,7 +49,9 @@ class EventForm extends Component {
           </Dropzone>
         </Grid>
         ):(
-        <img src={this.state.image} alt="event image"/>
+          <Grid item xs={12} className='centered-flex-column'>
+            <img src={this.state.image} alt="event image"/>
+          </Grid>
         )}
 
           <Grid item xs={12}>
@@ -127,6 +130,9 @@ class EventForm extends Component {
                 ))}
               </TextField>
             </FormControl>
+          </Grid>
+          <Grid item xs={12} className='centered-flex-column width-100'>
+            <Button className='width-100' variant="raised" color="secondary">Submit</Button>
           </Grid>
         </Grid>
       </form>
