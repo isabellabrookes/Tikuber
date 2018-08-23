@@ -15,8 +15,6 @@ import Typography from '@material-ui/core/Typography/Typography'
 import Button from '@material-ui/core/Button/Button'
 import Grid from '@material-ui/core/Grid/Grid'
 
-
-
 class TicketForm extends Component {
   state = {
     image: "",

@@ -32,7 +32,6 @@ class EventForm extends Component {
     })
   }
 
-
   render() {
     const {venues} = this.props
     return (
