@@ -13,7 +13,8 @@ import Moment from 'react-moment'
 
 const TicketCard = (props) => {
   const {ticket, tickets, eventsTickets, parent} = props
-  const dateClass = new Date() > new Date(ticket.event.endDate) ? 'Event-Finished' : 'Event-Live'
+  const dateClass = ticket && new Date() > new Date(ticket.event.endDate) ? 'Event-Finished' : 'Event-Live'
+  const soldClass = ticket.buyerUser ? 'Ticket-Sold' : 'Ticket-Available'
   const riskFactor = calculateRiskFactor(ticket, tickets, eventsTickets)
   const calculateGridProperties = (parent) => {
     switch(parent){
@@ -27,10 +28,15 @@ const TicketCard = (props) => {
         return {outerGridxs: 12, outerGridsm: 12, outerGridDirection: 'row', innerGridDirection: 'column'}
     }
   }
+  const ticketStatus = () => {
+    if (dateClass === 'Event-Finished') return <Typography color='secondary' style={{textAlign: 'center'}}>Event has finished</Typography>
+    if (soldClass === 'Ticket-Sold') return <Typography color='secondary' style={{textAlign: 'center'}}>Ticket has been sold</Typography>
+    return <Button href={`/tickets/${ticket.id}`} variant='contained' color='primary'>See Ticket</Button>
+  }
 
   const gridProperties = calculateGridProperties(parent)
   return (
-    <Card className={`${dateClass} padding-1 margin-1 ${riskFactor.riskClass}`}>
+    <Card className={`${dateClass} ${soldClass} padding-1 margin-1 ${riskFactor.riskClass}`}>
       <Grid container spacing={24} direction={`${gridProperties.outerGridDirection}`} alignItems="stretch">
         {parent === 'TicketsList' && <Grid item xs={gridProperties.outerGridxs} sm={gridProperties.outerGridsm} className='centered-flex-column'><img src={ticket.event.image} alt={`Ticket for sale for ${ticket.event}`} style={{height: '150px', borderRadius:'0.5em'}}/></Grid>}
         {parent === 'TicketsList' && <Grid item xs={gridProperties.outerGridxs} sm={gridProperties.outerGridsm}><EventInfo event={ticket.event}/></Grid>}
@@ -55,8 +61,10 @@ const TicketCard = (props) => {
           </Grid>
         </Grid> {/*Grid Inner Container*/}
           <div className='center-align-flex width-100'>
-            {dateClass === 'Event-Finished' ? <Typography color='secondary'>Event has finished</Typography> : <Button href={`/tickets/${ticket.id}`} variant='contained' color='primary'>See Ticket</Button>}
-          </div>
+            {
+              ticketStatus()
+            }
+            </div>
       </Grid>
     </Card>
   )

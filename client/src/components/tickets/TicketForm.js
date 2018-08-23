@@ -12,6 +12,7 @@ import MenuItem from '@material-ui/core/MenuItem/MenuItem'
 import InputLabel from '@material-ui/core/InputLabel/InputLabel'
 import FormControl from '@material-ui/core/FormControl/FormControl'
 import Typography from '@material-ui/core/Typography/Typography'
+import Button from '@material-ui/core/Button/Button'
 
 
 
@@ -46,7 +47,7 @@ class TicketForm extends Component {
   render() {
     const {events} = this.props
     return (
-      <form id="TicketForm" onSubmit={this.handleSubmit}>
+      <form id="TicketForm" onSubmit={this.handleSubmit} className='centered-flex-column'>
     {/*Price, description, image, sellerUser, event */}
         <FormControl fullWidth>
           <TextField
@@ -97,6 +98,7 @@ class TicketForm extends Component {
             margin="normal"
           />
         </FormControl>
+        <Button variant="raised" color="secondary">Submit</Button>
       </form>
     )
   }
