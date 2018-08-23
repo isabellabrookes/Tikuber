@@ -18,17 +18,15 @@ import {io} from "../index";
 export default class CommentController {
 
   @Get('/comments/:id')
-  async getComment(
+  getComment(
     @Param('id') id: number,
   ) {
-    const comment = await Comment.findOne(id)
-    await comment.user
-    return comment
+    return Comment.findOne(id)
   }
 
   @Get('/comments/')
-  async getComments() {
-    return await Comment.find()
+  getComments() {
+    return Comment.find()
   }
 
   @Authorized()

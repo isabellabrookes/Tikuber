@@ -15,8 +15,8 @@ class Comment extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number
 
-  @ManyToOne(_ => User, user => user.comments, { lazy: true })
-  user: Promise<User>
+  @ManyToOne(_ => User, user => user.comments, {eager:false})
+  user: User
 
   @ManyToOne(_ => Ticket, ticket => ticket.comments, {eager:false})
   ticket: Ticket
