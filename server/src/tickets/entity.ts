@@ -3,9 +3,9 @@ import {
   PrimaryGeneratedColumn,
   Entity,
   ManyToOne,
-  Column, OneToMany,
+  Column, OneToMany, CreateDateColumn,
 } from 'typeorm'
-import { IsString, IsNumber, IsDate } from 'class-validator'
+import { IsString, IsNumber } from 'class-validator'
 import { User } from '../users/entity'
 import { Event } from '../events/entity'
 import { Comment } from '../comments/entity'
@@ -29,7 +29,7 @@ class Ticket extends BaseEntity {
   image?: string
 
   @ManyToOne(_ => Event, event => event.tickets, {eager:true})
-  event?: Event
+  event: Event
 
   @ManyToOne(_ => User, user => user.ticketsForSale, {eager:true})
   sellerUser: User
@@ -40,8 +40,7 @@ class Ticket extends BaseEntity {
   @ManyToOne(_ => User, user => user.ticketsPurchased, {eager: true})
   buyerUser?: User
 
-  @IsDate()
-  @Column()
+  @CreateDateColumn()
   createdAt: Date
 
 }

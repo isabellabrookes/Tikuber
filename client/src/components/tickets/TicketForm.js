@@ -17,13 +17,14 @@ import Typography from '@material-ui/core/Typography/Typography'
 
 class TicketForm extends Component {
   state = {
-    image: null,
-    sellerUser: this.props.user
+    image: "",
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault()
-
+    await this.setState({
+      sellerUser: this.props.user.id
+    })
     this.props.onSubmit(this.state)
   }
 
@@ -33,7 +34,6 @@ class TicketForm extends Component {
 
   onImageDrop = files => {
   const cloudinaryPreset = 'nkcm4yci'
-    console.log(files[0])
 
     handleImageUpload(files[0], cloudinaryPreset, (imageURL)=>{
       this.setState({
@@ -44,9 +44,7 @@ class TicketForm extends Component {
 
 
   render() {
-    const {events, user } = this.props
-    console.log(this.state.sellerUser)
-    console.log(user)
+    const {events} = this.props
     return (
       <form id="TicketForm" onSubmit={this.handleSubmit}>
     {/*Price, description, image, sellerUser, event */}
@@ -66,7 +64,7 @@ class TicketForm extends Component {
             ))}
           </TextField>
           </FormControl>
-          {this.state.image === null ? (
+          {this.state.image === "" ? (
             <Dropzone
             multiple={false}
             accept="image/*"

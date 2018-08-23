@@ -8,7 +8,7 @@ import {Redirect} from 'react-router'
 
 class SellTickets extends Component {
   handleSubmit = (data) => {
-    this.props.createTicket(data.price, data.description, data.image, data.sellerUser)
+    this.props.createTicket(parseInt(data.price,10), data.description, data.image, data.sellerUser)
   }
   render() {
     const { authenticated } = this.props

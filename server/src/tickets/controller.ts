@@ -9,7 +9,7 @@ import {
   Put,
   Body,
   CurrentUser,
-  ForbiddenError, Delete
+  ForbiddenError, Delete, InternalServerError
 } from "routing-controllers";
 import {Ticket} from "./entity";
 import {Comment} from "../comments/entity";
@@ -39,17 +39,15 @@ export default class TicketController {
   }
 
   @Authorized()
-  @Post('/events/:eventId/tickets/')
+  @Post('/tickets')
   @HttpCode(201)
   async addTicket(
-    @Param('eventId') eventId: number
+    @Body() data: Ticket
   ){
-    let entity = await Ticket.create()
-    entity.event.id = eventId
-    entity.createdAt = new Date()
-    entity.save()
-
+    const entity = await Ticket.create(data).save()
     const ticket = await Ticket.findOne(entity.id)
+
+    if (!ticket) throw new InternalServerError(`Ticket Not Created`)
 
     io.emit('action', {
       type: 'ADD_TICKET',
