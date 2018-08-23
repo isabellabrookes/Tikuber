@@ -10,7 +10,6 @@ import Visibility from '@material-ui/icons/Visibility'
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import {Redirect} from 'react-router-dom'
 import Paper from '@material-ui/core/Paper/Paper'
-import Grid from '@material-ui/core/Grid/Grid'
 
 class LoginForm extends PureComponent {
 	state = {
@@ -23,7 +22,7 @@ class LoginForm extends PureComponent {
 	}
 
 	handleChange = prop => event => {
-  this.setState({ [prop]: event.target.value })
+    this.setState({ [prop]: event.target.value })
   }
 
   handleClickShowPassword = (e) => {
@@ -46,7 +45,6 @@ class LoginForm extends PureComponent {
               InputLabelProps={{
                 shrink: true,
               }}
-              margin="normal"
             />
             </FormControl>
             <FormControl fullWidth>
