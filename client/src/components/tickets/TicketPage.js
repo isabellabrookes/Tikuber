@@ -12,11 +12,16 @@ import Button from '../../../node_modules/@material-ui/core/Button/Button'
 import {averageTicketPrice, calculateRiskFactor} from '../../lib/FraudRiskAlgorithm'
 import CommentCard from './CommentCard'
 import Card from '@material-ui/core/Card/Card'
+import CommentForm from './CommentForm'
+import {userId} from '../../jwt'
+import {createComment} from '../../actions/comments'
 
 class TicketPage extends Component {
-
+  handleSubmit = (data) => {
+    this.props.createComment(data.comment, data.ticket, data.user)
+  }
   render() {
-    const { ticket, tickets, eventsTickets } = this.props
+    const { ticket, tickets, eventsTickets, authenticated, user } = this.props
     const risk = ticket && tickets && eventsTickets && calculateRiskFactor(ticket, tickets, eventsTickets)
     return (
       <div className='Container-Div'>
@@ -49,6 +54,9 @@ class TicketPage extends Component {
                 {ticket.comments.map(comment => <Grid item key={comment.id}><CommentCard comment={comment} /></Grid>)}
               </Grid>
             </Grid>
+            {authenticated && <Grid item xs={12}>
+              <CommentForm ticket={ticket} user={user} onSubmit={this.handleSubmit}/>
+            </Grid>}
           </Grid>
         }
       </div>
@@ -58,9 +66,11 @@ class TicketPage extends Component {
 
 
 const mapStateToProps = (state, props) => ({
+  authenticated: state.currentUser !== null,
+  user: state.currentUser && state.users && state.users[userId(state.currentUser.jwt)],
   tickets: state.tickets,
   ticket: state.tickets && state.tickets[props.match.params.id],
   eventsTickets: state.tickets && state.events && Object.values(state.tickets).filter(ticket => ticket.event.id === state.tickets[props.match.params.id].event.id),
 })
 
-export default connect(mapStateToProps)(TicketPage)
+export default connect(mapStateToProps, {createComment})(TicketPage)

@@ -3,7 +3,7 @@ import {
   Body,
   CurrentUser, Delete, ForbiddenError,
   Get,
-  HttpCode,
+  HttpCode, InternalServerError,
   JsonController,
   NotFoundError,
   Param,
@@ -13,6 +13,7 @@ import {
 import {Comment} from "./entity";
 import {User} from "../users/entity";
 import {io} from "../index";
+import {Ticket} from "../tickets/entity";
 
 @JsonController()
 export default class CommentController {
@@ -24,22 +25,21 @@ export default class CommentController {
     return Comment.findOne(id)
   }
 
-  @Get('/comments/')
+  @Get('/comments')
   getComments() {
     return Comment.find()
   }
 
   @Authorized()
-  @Post('tickets/:ticketId/comments/')
+  @Post('/comments')
   @HttpCode(201)
   async createComment(
-    @Param('ticketId') ticketId: number
+    @Body() data: Comment
   ) {
-    let entity = await Comment.create()
-    entity.ticket.id = ticketId
-    entity.save()
-
+    const entity = await Comment.create(data).save()
     const comment = await Comment.findOne(entity.id)
+
+    if (!comment) throw new InternalServerError(`Comment Not Created`)
 
     io.emit('action', {
       type: 'ADD_COMMENT',

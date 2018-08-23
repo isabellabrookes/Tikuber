@@ -114,7 +114,7 @@ class TicketForm extends Component {
             </FormControl>
           </Grid>
           <Grid item xs={12} className='centered-flex-column width-100'>
-            <Button className='width-100' variant="raised" color="secondary">Submit</Button>
+            <Button type="submit" className='width-100' variant="raised" color="secondary">Submit</Button>
           </Grid>
         </Grid>
       </form>

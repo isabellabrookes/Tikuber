@@ -9,7 +9,10 @@ const CommentCard = (props) => {
     <Card className='padding-1 margin-1'>
       <Grid container spacing={24} direction='row' alignItems='stretch' >
         <Grid item xs={4}>
-          <Typography>{comment.id}</Typography>
+          <Typography variant='title'>{comment.id}</Typography>
+        </Grid>
+        <Grid item xs={4}>
+          <Typography variant='subheading'>{comment.comment}</Typography>
         </Grid>
       </Grid>
     </Card>
