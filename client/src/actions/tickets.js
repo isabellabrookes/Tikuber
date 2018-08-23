@@ -1,5 +1,7 @@
 import * as request from 'superagent'
 import {baseUrl} from '../constants'
+import {isExpired} from '../jwt'
+import {logout} from './users'
 
 export const ADD_TICKET = 'ADD_TICKET'
 export const UPDATE_TICKET = 'UPDATE_TICKET'
@@ -25,4 +27,18 @@ export const getTickets = () => dispatch => {
     .get(`${baseUrl}/tickets`)
     .then(result => dispatch(updateTickets(result.body)))
     .catch(err => console.error(err))
+}
+
+export const createTicket = () => (dispatch, getState) => {
+  const state = getState()
+  if (!state.currentUser) return null
+  const jwt = state.currentUser.jwt
+
+  if (isExpired(jwt)) return dispatch(logout())
+
+  request
+    .post(`${baseUrl}/Tickets`)
+    .set('Authorization', `Bearer ${jwt}`)
+    .then(result =>dispatch(addTicket(result.body)))
+    .catch(err => console.log(err))
 }

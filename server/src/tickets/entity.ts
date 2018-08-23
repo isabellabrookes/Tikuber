@@ -29,13 +29,13 @@ class Ticket extends BaseEntity {
   image?: string
 
   @ManyToOne(_ => Event, event => event.tickets, {eager:true})
-  event: Event
+  event?: Event
 
   @ManyToOne(_ => User, user => user.ticketsForSale, {eager:true})
   sellerUser: User
 
   @OneToMany(_ => Comment, comment => comment.user, {eager: true})
-  comments: Comment[]
+  comments?: Comment[]
 
   @ManyToOne(_ => User, user => user.ticketsPurchased, {eager: true})
   buyerUser?: User

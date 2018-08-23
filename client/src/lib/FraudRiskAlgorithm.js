@@ -39,7 +39,7 @@ const calculateRiskBusinessHours = (risk, ticket) => {
   const date = new Date(ticket.createdAt)
   const hours = date.getHours()
   const mins = (date.getMinutes().toString().length === 1 ) ? '0'+date.getMinutes().toString() :date.getMinutes()
-  const time = parseInt(`${hours}${mins}`)
+  const time = parseInt(`${hours}${mins}`, 10)
   if (time >= 900 && hours <= 1700) return risk - 13
   return risk + 13
 }

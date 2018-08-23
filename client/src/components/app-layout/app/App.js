@@ -9,7 +9,7 @@ import LogoutPage from '../../user/logout/LogoutPage'
 import EventsList from '../../events/EventsList'
 import EventDetails from '../../events/EventPage'
 import TicketsList from '../../tickets/TicketsList'
-import SellTickets from '../../tickets/selltickets/SellTickets'
+import SellTickets from '../../tickets/SellTickets'
 import Ticket from '../../tickets/TicketPage'
 import EventsTickets from '../../events/EventsTickets'
 

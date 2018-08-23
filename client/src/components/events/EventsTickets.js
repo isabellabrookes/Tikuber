@@ -8,7 +8,6 @@ import Paper from '@material-ui/core/Paper/Paper'
 import Button from '@material-ui/core/Button/Button'
 import EventInfo from './EventInfo'
 import Grid from '@material-ui/core/Grid/Grid'
-import Card from '@material-ui/core/Card/Card'
 
 const EventsTickets = (props) => {
   const { event, eventTickets } = props
