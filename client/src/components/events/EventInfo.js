@@ -15,7 +15,7 @@ const EventInfo = (props) => {
   let address = event.venue.address.replace(/,.*/, "")
   return (
     <div>
-      <div className='Details-Paper-Inner-Div'>
+      <div className='Details-Paper-Inner-Div padding-1'>
         <Typography gutterBottom variant="display1" component="h1">{event.name}</Typography>
         <Typography variant="title">{event.venue.name} </Typography>
         <Typography><IconButton onClick={()=>window.open(`https://www.google.com/maps/search/?api=1&query=${googlemapURI}`)}><PlaceRounded/></IconButton>{address} </Typography>

@@ -35,10 +35,10 @@ class Ticket extends BaseEntity {
   sellerUser: User
 
   @OneToMany(_ => Comment, comment => comment.user, {eager: true})
-  comments?: Comment[]
+  comments: Comment[]
 
   @ManyToOne(_ => User, user => user.ticketsPurchased, {eager: true})
-  buyerUser?: User
+  buyerUser: User
 
   @CreateDateColumn()
   createdAt: Date
