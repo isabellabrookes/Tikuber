@@ -43,12 +43,12 @@ export default class EventController {
   @Post('/events')
   @HttpCode(201)
   async createEvent(
+    @Body() data: Event,
     @CurrentUser({ required: true }) user: User,
   ) {
     if (user.role.type !== "Admin") throw new ForbiddenError(`User not Authorised`)
 
-    const entity = await Event.create().save()
-
+    const entity = await Event.create(data).save()
     const event = await Event.findOne(entity.id)
 
     io.emit('action', {

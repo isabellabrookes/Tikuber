@@ -4,7 +4,7 @@ import {
   Entity,
   Column, OneToMany, ManyToOne,
 } from 'typeorm'
-import { IsString, IsDate } from 'class-validator'
+import { IsString } from 'class-validator'
 import { Ticket } from '../tickets/entity'
 import { Venue } from '../venues/entity'
 
@@ -26,13 +26,13 @@ class Event extends BaseEntity {
   @Column()
   image: string
 
-  @IsDate()
+  @IsString()
   @Column()
-  startDate: Date
+  startDate: string
 
-  @IsDate()
+  @IsString()
   @Column()
-  endDate: Date
+  endDate: string
 
   @ManyToOne(_ => Venue, venue => venue.events, {eager:true})
   venue: Venue

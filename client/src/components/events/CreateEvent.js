@@ -1,14 +1,21 @@
 import React, {Component} from 'react'
-import Paper from '@material-ui/core/Paper/Paper'
 import connect from 'react-redux/es/connect/connect'
-import Typography from '@material-ui/core/Typography/Typography'
-import {userId} from '../../jwt'
 import {Redirect} from 'react-router'
-import Grid from '@material-ui/core/Grid/Grid'
-import Button from '@material-ui/core/Button/Button'
+import {userId} from '../../jwt'
+import {createEvent} from '../../actions/events'
 import EventForm from './EventForm'
+import Grid from '@material-ui/core/Grid/Grid'
+import Paper from '@material-ui/core/Paper/Paper'
+import Button from '@material-ui/core/Button/Button'
+import Typography from '@material-ui/core/Typography/Typography'
+
 
 class CreateEvent extends Component {
+  handleSubmit = (data) => {
+    this.props.createEvent(data.name, data.description, data.image, data.startDate, data.endDate, data.venue)
+    return (<Redirect to={"/events"}/>)
+  }
+
   render() {
     const { authenticated, user } = this.props
     if (authenticated && user && user.role.type !== 'Admin') return (
@@ -20,7 +27,7 @@ class CreateEvent extends Component {
         <Typography gutterBottom variant="display1" component="h1">Create Event</Typography>
 
         {(user && user.role.type === 'Admin') ?  (
-          <EventForm />
+          <EventForm onSubmit={this.handleSubmit} />
         ) : (
           <Grid container direction='column' justify='space-around' alignItems='center' style={{height:'40vh'}}>
             <Grid item>
@@ -33,9 +40,7 @@ class CreateEvent extends Component {
             </Grid>
           </Grid>
         )}
-
-
-          </Paper>
+      </Paper>
     )
   }
 }
@@ -45,4 +50,4 @@ const mapStateToProps = state => ({
   user: state.currentUser && state.users && state.users[userId(state.currentUser.jwt)]
 })
 
-export default connect(mapStateToProps)(CreateEvent)
+export default connect(mapStateToProps, {createEvent})(CreateEvent)

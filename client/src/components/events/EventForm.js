@@ -15,9 +15,6 @@ class EventForm extends Component {
   }
   handleSubmit = async (e) => {
     e.preventDefault()
-    // await this.setState({
-    //   sellerUser: this.props.user.id
-    // })
     this.props.onSubmit(this.state)
   }
 
@@ -39,19 +36,21 @@ class EventForm extends Component {
     const {venues} = this.props
     return (
       <form id="EventForm" onSubmit={this.handleSubmit} className='centered-flex-column' noValidate>
+        <Grid container justify='space-around' style={{marginTop:'1em'}} spacing={24}>
         {this.state.image === "" ? (
-        <Dropzone
+        <Grid item xs={12} className='centered-flex-column'>
+          <Dropzone
           multiple={false}
           accept="image/*"
           onDrop={this.onImageDrop.bind(this)}
           >
-          <Typography>Drop an image or click to select a file to upload.</Typography>
-        </Dropzone>
+            <Typography>Drop an image or click to select a file to upload.</Typography>
+          </Dropzone>
+        </Grid>
         ):(
         <img src={this.state.image} alt="event image"/>
         )}
 
-        <Grid container justify='space-around' style={{marginTop:'1em'}}>
           <Grid item xs={12}>
             <FormControl fullWidth>
               <TextField
@@ -59,7 +58,7 @@ class EventForm extends Component {
                 label="Name of Event"
                 rowsMax="4"
                 value={this.state.name}
-                error={!!(this.state.name && this.state.description.name < 2)}
+                error={!!(this.state.name && this.state.name.name < 2)}
                 onChange={this.handleChange('name')}
                 InputLabelProps={{
                   shrink: true,
@@ -71,8 +70,8 @@ class EventForm extends Component {
             <TextField
             id="startDate"
             label="Start Date and Time"
-            type="date"
-            defaultValue="2018-08-24"
+            type="datetime-local"
+            defaultValue="2018-08-24T19:00"
             value={this.state.startDate}
             InputLabelProps={{
               shrink: true,
@@ -84,8 +83,8 @@ class EventForm extends Component {
             <TextField
             id="endDate"
             label="End Date and Time"
-            type="date"
-            defaultValue="2018-08-24"
+            type="datetime-local"
+            defaultValue="2018-08-24T23:00"
             value={this.state.endDate}
             InputLabelProps={{
             shrink: true,
@@ -109,7 +108,7 @@ class EventForm extends Component {
               />
             </FormControl>
           </Grid>
-          <Grid item ex={12}>
+          <Grid item xs={12}>
             <FormControl fullWidth>
               <TextField
               id="select-venue"
