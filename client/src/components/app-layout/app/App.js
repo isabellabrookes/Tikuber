@@ -12,6 +12,7 @@ import TicketsList from '../../tickets/TicketsList'
 import SellTickets from '../../tickets/SellTickets'
 import Ticket from '../../tickets/TicketPage'
 import EventsTickets from '../../events/EventsTickets'
+import CreateEvent from '../../events/CreateEvent'
 
 class App extends Component {
   render() {
@@ -27,6 +28,7 @@ class App extends Component {
             <Route exact path="/logout" component={LogoutPage} />
             <Route exact path="/signup" component={SignupPage} />
             <Route exact path="/events" component={EventsList} />
+            <Route exact path="/create/event" component={CreateEvent} />
             <Route exact path="/events/:id" component={EventDetails} />
             <Route exact path="/tickets" component={TicketsList} />
             <Route exact path="/sell" component={SellTickets} />

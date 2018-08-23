@@ -56,7 +56,9 @@ class TicketForm extends Component {
           select
           value={this.state.event}
           onChange={this.handleChange('event')}
-          margin="normal"
+          InputLabelProps={{
+            shrink: true,
+          }}
           >
             {events && Object.values(events).map(event => (
               <MenuItem key={event.id} value={event}>
@@ -64,7 +66,7 @@ class TicketForm extends Component {
               </MenuItem>
             ))}
           </TextField>
-          </FormControl>
+        </FormControl>
           {this.state.image === "" ? (
             <Dropzone
             multiple={false}
@@ -82,7 +84,9 @@ class TicketForm extends Component {
             type="number"
             value={this.state.price}
             onChange={this.handleChange('price')}
-            margin="normal"
+            InputLabelProps={{
+              shrink: true,
+            }}
             startAdornment={<InputAdornment position="start"><EuroSymbol /></InputAdornment>}
           />
         </FormControl>
@@ -95,7 +99,9 @@ class TicketForm extends Component {
             value={this.state.description}
             error={!!(this.state.description && this.state.description.length < 20)}
             onChange={this.handleChange('description')}
-            margin="normal"
+            InputLabelProps={{
+              shrink: true,
+            }}
           />
         </FormControl>
         <Button variant="raised" color="secondary">Submit</Button>

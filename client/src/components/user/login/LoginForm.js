@@ -57,6 +57,9 @@ class LoginForm extends PureComponent {
           className={classes.textField}
           value={this.state.email}
           onChange={this.handleChange("email")}
+          InputLabelProps={{
+            shrink: true,
+          }}
           margin="normal"
         />
         <FormControl className={classes.textField}>
@@ -66,6 +69,9 @@ class LoginForm extends PureComponent {
             type={this.state.showPassword ? 'text' : 'password'}
             value={this.state.password}
             onChange={this.handleChange("password")}
+            InputLabelProps={{
+              shrink: true,
+            }}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton

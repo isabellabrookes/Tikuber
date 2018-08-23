@@ -1,15 +1,17 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import Paper from '@material-ui/core/Paper/Paper'
+import {Redirect} from 'react-router'
 import TicketsForm from './TicketForm'
-import Typography from '@material-ui/core/Typography/Typography'
 import {createTicket} from '../../actions/tickets'
+import Paper from '@material-ui/core/Paper/Paper'
+import Typography from '@material-ui/core/Typography/Typography'
 import Grid from '@material-ui/core/Grid/Grid'
 import Button from '@material-ui/core/Button/Button'
 
 class SellTickets extends Component {
   handleSubmit = (data) => {
     this.props.createTicket(parseInt(data.price,10), data.description, data.image, data.sellerUser, data.event)
+    return (<Redirect to={"/tickets"}/>)
   }
   render() {
     const { authenticated } = this.props
