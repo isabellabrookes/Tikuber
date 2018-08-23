@@ -8,6 +8,7 @@ import Paper from '@material-ui/core/Paper/Paper'
 import Button from '@material-ui/core/Button/Button'
 import EventInfo from './EventInfo'
 import Grid from '@material-ui/core/Grid/Grid'
+import Card from '@material-ui/core/Card/Card'
 
 const EventsTickets = (props) => {
   const { event, eventTickets } = props
@@ -20,6 +21,7 @@ const EventsTickets = (props) => {
           <Grid container className='padding-1'>
             <Grid item xs={6}><img src={event.image} alt={event.name} style={{height: "200px", borderRadius: "1em"}}/></Grid>
             <Grid item xs={6}><EventInfo event={event} /></Grid>
+            <Grid item xs={12} sm={12}><Button href={`/events/${event.id}`} variant='contained' color='secondary' className='width-100'>Back To Event</Button></Grid>
           </Grid>
           {eventTickets.length ? eventTickets.map(ticket => <TicketCard parent={'EventTickets'} ticket={ticket}/>) : (
             <div className='padding-1 centered-flex-column'>

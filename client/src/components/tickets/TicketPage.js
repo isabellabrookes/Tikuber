@@ -24,21 +24,21 @@ class TicketPage extends Component {
         {ticket && tickets && eventsTickets && <Typography gutterBottom variant="display1" component="h1">Ticket Number {ticket.id}</Typography>}
         {ticket && tickets && eventsTickets &&
         <Paper className='Details-Paper'>
-          <Grid container spacing={16} >
-            <Grid item xs={12} sm={6}  className='padding-1'>
+          <Grid container spacing={0} alignItems="stretch" >
+            <Grid item xs={12} sm={6} >
               <img src={ticket.image} alt={`ticket for sale for ${ticket.event.name}`}/>
-              <div className='padding-1' style={{borderLeft: '2px solid blue'}}>
+              <div className='padding-1'>
               <Typography gutterBottom variant="display1" component="h1"> <AccountIcon />{ticket.sellerUser.firstName}</Typography>
               <Typography gutterBottom variant="display1" component="h1" className={risk.riskClass}> <Warning />Risk: {risk.riskFactor}%</Typography>
               <Typography gutterBottom variant="display1" component="h1" color='primary'> <EuroSymbol />{ticket.price}</Typography>
-              <div className='centered-flex-column'><Button onClick={()=>window.open(`https://bunq.me/isabella/${ticket.price}`)} variant='contained' color='secondary'>Buy</Button></div>
+              <Button className='width-100' style={{marginTop:'2.3em'}} onClick={()=>window.open(`https://bunq.me/isabella/${ticket.price}`)} variant='contained' color='secondary'>Buy</Button>
               </div>
             </Grid>
-            <Grid item xs={12} sm={6} className='padding-1'>
+            <Grid item xs={12} sm={6}>
               <img src={ticket.event.image} alt={`ticket for sale for ${ticket.event.name}`}/>
               <EventInfo event={ticket.event} description={''}/>
               <Typography>Average Price of Tickets: €{averageTicketPrice(eventsTickets)}</Typography>
-              <div className='centered-flex-column'><Button href={`/events/${ticket.event.id}`} variant='contained' color='primary'>Back to Event</Button></div>
+              <div className='centered-flex-column'><Button className='width-100' href={`/events/${ticket.event.id}`} variant='contained' color='primary'>Back to Event</Button></div>
             </Grid>
             <Grid item xs={12} className='padding-1'>
               <Typography>Comments</Typography>
