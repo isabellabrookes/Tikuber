@@ -16,4 +16,4 @@ const CommentCard = (props) => {
   )
 }
 
-export default (CommentCard)
+export default CommentCard

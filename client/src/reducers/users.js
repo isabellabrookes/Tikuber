@@ -57,14 +57,4 @@ const currentUser = (state = initialUserToken, {type, payload}) => {
   }
 }
 
-// const user = (state = {}, action: Action) => {
-//   const jwt = users()
-//   const currentUser = currentUser()
-//   if (users === null && currentUser === null) return null
-//   console.log(currentUser)
-//   console.log(currentUser.jwt)
-//   // return console.log(users[userId(currentUser.jwt)])
-//   return null
-// }
-
 export {users, currentUser}
