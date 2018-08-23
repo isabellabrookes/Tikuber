@@ -1,10 +1,12 @@
 import React from 'react'
+import {connect} from 'react-redux'
 import AppBar from '@material-ui/core/AppBar/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import {withRouter} from 'react-router'
 import AccountMenu from './AccountMenu'
+import {userId} from '../../../jwt'
 
 const NavBar = (props) => {
   const { location, history, user } = props
@@ -17,11 +19,11 @@ const NavBar = (props) => {
         </Button>
         {
           !user && !location.pathname.includes('login') &&
-          <Button color="inherit" onClick={() => history.push('/login')}>Login</Button>
+          <Button variant="contained" color="primary" onClick={() => history.push('/login')}>Login</Button>
         }
         {
-          !user && !location.pathname.includes('signup') &&
-          <Button color="inherit" onClick={() => history.push('/signup')}>Sign up</Button>
+          !user && location.pathname.includes('login') &&
+          <Button variant="contained" color="primary" onClick={() => history.push('/signup')}>Sign up</Button>
         }
         {
           user && !location.pathname.includes('tickets/') &&
@@ -40,4 +42,8 @@ const NavBar = (props) => {
   )
 }
 
-export default withRouter(NavBar)
+const MapStateToProps = state => ({
+  user: state.currentUser && state.users && state.users[userId(state.currentUser.jwt)]
+})
+
+export default connect(MapStateToProps)(withRouter(NavBar))

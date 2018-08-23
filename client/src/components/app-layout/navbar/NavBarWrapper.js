@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import NavBar from './NavBar'
-import {userId} from '../../../jwt'
 import {getUsers} from '../../../actions/users'
 import {getEvents} from '../../../actions/events'
 import {getTickets} from '../../../actions/tickets'
@@ -19,14 +18,13 @@ class NavBarWrapper extends Component {
   render() {
     const {user} = this.props
     return (
-      <NavBar user={user}/>
+      <NavBar/>
     )
   }
 }
 
 const mapStateToProps = state => ({
   users: state.users,
-  user: state.currentUser && state.users && state.users[userId(state.currentUser.jwt)],
   events: state.events,
   tickets: state.tickets,
   comments: state.comments,
