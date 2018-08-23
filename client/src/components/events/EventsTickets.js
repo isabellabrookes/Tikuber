@@ -22,7 +22,7 @@ const EventsTickets = (props) => {
             <Grid item xs={6}><EventInfo event={event} /></Grid>
           </Grid>
           {eventTickets.length ? eventTickets.map(ticket => <TicketCard parent={'EventTickets'} ticket={ticket}/>) : (
-            <div className='padding-1 centered-flex'>
+            <div className='padding-1 centered-flex-column'>
               <Typography>No tickets for sale</Typography>
               {new Date() > new Date(event.endDate) ? <Typography color='secondary'>The event has ended</Typography> : (<Button href={'/sell'} variant="contained" color="secondary">
                 Sell Tickets

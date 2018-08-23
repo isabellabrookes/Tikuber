@@ -25,25 +25,23 @@ class EventPage extends Component {
           alignItems="stretch"
           spacing={8}>
           <Grid item xs={12} sm={6}>
-            <Paper className='Details-Paper'>
+            <Paper className='Details-Paper' >
               <img src={event.image} alt={event.name}/>
               <EventInfo event={event} description={event.description} />
             </Paper>
           </Grid>
-          <Grid item xs={12} sm={6}>
-            <Paper className='Details-Paper'>
+          <Grid item xs={12} sm={6} >
               {eventTickets && eventTickets.length ? (<div className='center-align-flex'>
                 <Button className='padding-1' style={{margin: '1em'}} href={`/events/${event.id}/tickets`} variant="contained" color="secondary">
-                  SEE ALL TICKETS
+                  SEE ALL EVENT TICKETS
                 </Button>
-                {eventTickets.map(ticket => <TicketCard parent={'EventDetails'} ticket={ticket}/>)}
-              </div>) : <Card className='centered-flex' style={{padding: '1em', height:'100vh'}}>
+                {eventTickets.map(ticket => <TicketCard parent={'EventPage'} ticket={ticket}/>)}
+              </div>) : <Card className='centered-flex-column' style={{padding: '1em', height:'100vh'}}>
                 <Typography variant="title" style={{color: 'red'}}>No tickets for sale currently, sell yours!</Typography>
                 <Button href={'/sell'} variant="contained" color="secondary">
                   Sell Tickets
                 </Button>
               </Card>}
-            </Paper>
           </Grid>
         </Grid>
         }

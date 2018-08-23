@@ -1,12 +1,8 @@
-.EventList {
-  height: 95vh;
-}
-
 .EventList-Card {
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 85vh;
   margin-bottom: 1em;
   .EventList-Card-Image {
     height:200px;

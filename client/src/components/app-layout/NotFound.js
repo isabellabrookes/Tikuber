@@ -4,8 +4,8 @@ import Typography from '@material-ui/core/Typography/Typography'
 
 const NotFound = (props) => {
   return (
-    <div className='NotFound Container-Div centered-flex'>
-      <div className='Component-Status centered-flex'>
+    <div className='NotFound Container-Div centered-flex-column'>
+      <div className='Component-Status centered-flex-column'>
       <Typography variant={'display2'}>Oh no!</Typography>
       <Typography variant={'display1'} gutterBottom>{props.message} Not Found... <span role='img' aria-label='crying face'>😢</span></Typography>
       <Typography variant='subheading'>Go back to find something better!</Typography>

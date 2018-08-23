@@ -13,9 +13,9 @@ const calculateRiskFactor = (ticket, tickets, eventsTickets) => {
   risk = Math.round(risk)
   risk = Math.min(risk, 98)
   risk = Math.max(risk, 2)
-  if (risk < 41) return {riskFactor: risk, riskClass: 'low-risk'}
-  if (risk > 79) return {riskFactor: risk, riskClass: 'high-risk'}
-  return {riskFactor: risk, riskClass: 'medium-risk'}
+  if (risk < 41) return {riskFactor: risk, riskClass: 'low'}
+  if (risk > 79) return {riskFactor: risk, riskClass: 'high'}
+  return {riskFactor: risk, riskClass: 'medium'}
 }
 
 const calculateRiskOfOnlyTicket = (risk, ticket, tickets) => {

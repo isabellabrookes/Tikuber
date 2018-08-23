@@ -9,16 +9,15 @@ class EventsList extends PureComponent {
    const { events } = this.props
 
     return (
-      <div className='EventList'>
-        <Grid container
-              className='EventList'
-              spacing={16}
-              direction="row"
-              justify="space-around"
+        <Grid
+          container
+          spacing={16}
+          direction="row"
+          justify="space-evenly"
+          alignItems="stretch"
         >
           { events && events.map(event => <Grid key={event.id} item xs={12} sm={6} md={3}><EventCard event={event}/></Grid>)}
         </Grid>
-      </div>
     )
   }
 }
