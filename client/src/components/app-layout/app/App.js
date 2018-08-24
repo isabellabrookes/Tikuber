@@ -13,6 +13,8 @@ import SellTickets from '../../tickets/SellTickets'
 import Ticket from '../../tickets/TicketPage'
 import EventsTickets from '../../events/EventsTickets'
 import CreateEvent from '../../events/CreateEvent'
+import NotFound404 from '../errors/NotFound404'
+import {Switch} from 'react-router'
 
 class App extends Component {
   render() {
@@ -23,17 +25,20 @@ class App extends Component {
             <NavBarWrapper />
           </nav>
           <main>
-            <Route exact path="/" component={LandingPage} />
-            <Route exact path="/login" component={LoginPage} />
-            <Route exact path="/logout" component={LogoutPage} />
-            <Route exact path="/signup" component={SignupPage} />
-            <Route exact path="/events" component={EventsList} />
-            <Route exact path="/create/event" component={CreateEvent} />
-            <Route exact path="/events/:id" component={EventDetails} />
-            <Route exact path="/tickets" component={TicketsList} />
-            <Route exact path="/sell" component={SellTickets} />
-            <Route exact path="/tickets/:id" component={Ticket} />
-            <Route exact path="/events/:id/tickets" component={EventsTickets} />
+            <Switch>
+              <Route exact path="/" component={LandingPage} />
+              <Route exact path="/login" component={LoginPage} />
+              <Route exact path="/logout" component={LogoutPage} />
+              <Route exact path="/signup" component={SignupPage} />
+              <Route exact path="/events" component={EventsList} />
+              <Route exact path="/events/create" component={CreateEvent} />
+              <Route exact path="/events/:id(\d+)" component={EventDetails} />
+              <Route exact path="/events/:id(\d+)/tickets" component={EventsTickets} />
+              <Route exact path="/tickets" component={TicketsList} />
+              <Route exact path="/tickets/sell" component={SellTickets} />
+              <Route exact path="/tickets/:id(\d+)" component={Ticket} />
+              <Route component={NotFound404}/>
+            </Switch>
           </main>
         </div>
       </Router>

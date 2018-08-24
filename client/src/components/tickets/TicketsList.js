@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import Loading from '../app-layout/Loading'
+import Loading from '../app-layout/errors/Loading'
 import Typography from '@material-ui/core/Typography/Typography'
 import TicketCard from './TicketCard'
 import Grid from '@material-ui/core/Grid/Grid'
