@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {Redirect} from 'react-router'
 import TicketsForm from './TicketForm'
 import {createTicket} from '../../actions/tickets'
 import Paper from '@material-ui/core/Paper/Paper'
@@ -11,7 +10,7 @@ import Button from '@material-ui/core/Button/Button'
 class SellTickets extends Component {
   handleSubmit = (data) => {
     this.props.createTicket(parseInt(data.price,10), data.description, data.image, data.sellerUser, data.event)
-    return (<Redirect to={"/tickets"}/>)
+    this.props.history.push('/tickets/')
   }
   render() {
     const { authenticated } = this.props

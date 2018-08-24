@@ -64,7 +64,7 @@ const TicketCard = (props) => {
           </Grid>)
         }
         {
-          parent !== 'EventPage' && (
+          parent !== 'EventPage' && ticket.image && (
           <Grid item xs={gridProperties.outerGridxs} sm={gridProperties.outerGridsm} className='centered-flex-column'>
             <img src={ticket.image} alt={`Ticket for sale for ${ticket.event}`} style={{height: '20vh', maxWidth: '40vw', borderRadius:'0.5em'}}/>
           </Grid>)

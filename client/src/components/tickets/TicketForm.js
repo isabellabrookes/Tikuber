@@ -23,7 +23,7 @@ class TicketForm extends Component {
   componentDidMount() {
       if (this.props.ticket) {
         return this.setState({
-          event: this.props.ticket.event.id,
+          event: this.props.ticket.event,
           price: this.props.ticket.price,
           image: this.props.ticket.image,
           description: this.props.ticket.description,
@@ -57,9 +57,6 @@ class TicketForm extends Component {
 
   render() {
     const {events, ticket} = this.props
-
-
-
     return (
       <form id="TicketForm" onSubmit={this.handleSubmit} className='centered-flex-column' >
         <Grid container justify='space-around' spacing={24}>
@@ -121,7 +118,7 @@ class TicketForm extends Component {
                 multiline
                 rowsMax="4"
                 value={this.state.description}
-                error={!!(this.state.description && this.state.description.length < 20)}
+                error={!!(this.state.description && this.state.description.length < 5)}
                 onChange={this.handleChange('description')}
                 InputLabelProps={{
                   shrink: true,
@@ -138,10 +135,9 @@ class TicketForm extends Component {
   }
 }
 
-const mapStateToProps = (state, props) => ({
+const mapStateToProps = (state) => ({
 events: state.events === null ? null : Object.values(state.events).sort((a, b) => new Date(b.startDate) - new Date(a.endDate)),
 user: state.currentUser && state.users && state.users[userId(state.currentUser.jwt)],
-ticket: state.tickets && state.tickets[props.match.params.id],
 })
 
 export default connect(mapStateToProps)(TicketForm)

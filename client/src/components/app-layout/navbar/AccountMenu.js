@@ -67,6 +67,7 @@ class AccountMenu extends React.Component {
                     <MenuList>
                       {user && user.role.type === 'Admin' && <MenuItem onClick={()=> history.push('/events/create')}>Create Event</MenuItem> }
                       <MenuItem onClick={()=> history.push('/tickets/sell')}>Sell Ticket</MenuItem>
+                      <MenuItem onClick={()=> history.push('/my/tickets')}>My Ticket</MenuItem>
                       <MenuItem onClick={()=> history.push('/logout')}>Logout</MenuItem>
                     </MenuList>
                   </ClickAwayListener>

@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {Redirect} from 'react-router'
 import TicketsForm from './TicketForm'
 import {userId} from '../../jwt'
 import {updateMyTicket} from '../../actions/tickets'
@@ -12,7 +11,7 @@ import Button from '@material-ui/core/Button/Button'
 class EditTicket extends Component {
   handleSubmit = (data) => {
     this.props.updateMyTicket(parseInt(data.price,10), data.description, data.image, data.sellerUser, data.event, data.id)
-    return (<Redirect to={"/my/tickets/"}/>)
+    this.props.history.push('/my/tickets/')
   }
 
   render() {
@@ -21,7 +20,7 @@ class EditTicket extends Component {
     return (
       <Paper className='Details-Paper padding-1 margin-1'>
         <Typography gutterBottom variant="display1" component="h1">Edit Ticket</Typography>
-        {ticketSeller && <TicketsForm onSubmit={this.handleSubmit} />}
+        {ticketSeller && <TicketsForm ticket={ticket} onSubmit={this.handleSubmit} />}
 
         { !user && <Grid container direction='column' justify='space-around' alignItems='center' style={{height:'40vh'}}>
             <Grid item>
