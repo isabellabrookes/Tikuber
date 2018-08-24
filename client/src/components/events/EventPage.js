@@ -32,13 +32,16 @@ class EventPage extends Component {
           </Grid>
           <Grid item xs={12} sm={6} >
               {eventTickets && eventTickets.length ? (<div className='center-align-flex'>
-                <Button className='padding-1' style={{margin: '1em'}} href={`/events/${event.id}/tickets`} variant="contained" color="secondary">
+                <Button href={'/tickets/sell'} variant="contained" color="secondary" className='padding-1' style={{margin: '1em'}}>
+                  Sell Tickets
+                </Button>
+                <Button className='padding-1' style={{margin: '1em'}} href={`/events/${event.id}/tickets`} variant="contained" color="primary">
                   SEE ALL EVENT TICKETS
                 </Button>
                 {eventTickets.map(ticket => <TicketCard parent={'EventPage'} ticket={ticket}/>)}
               </div>) : <Card className='centered-flex-column' style={{padding: '1em', height:'100vh'}}>
                 <Typography variant="title" style={{color: 'red'}}>No tickets for sale currently, sell yours!</Typography>
-                <Button href={'/sell'} variant="contained" color="secondary">
+                <Button href={'/tickets/sell'} variant="contained" color="secondary">
                   Sell Tickets
                 </Button>
               </Card>}

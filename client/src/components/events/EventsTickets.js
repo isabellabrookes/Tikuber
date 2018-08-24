@@ -25,7 +25,7 @@ const EventsTickets = (props) => {
           {eventTickets.length ? eventTickets.map(ticket => <TicketCard parent={'EventTickets'} ticket={ticket}/>) : (
             <div className='padding-1 centered-flex-column'>
               <Typography>No tickets for sale</Typography>
-              {new Date() > new Date(event.endDate) ? <Typography color='secondary'>The event has ended</Typography> : (<Button href={'/sell'} variant="contained" color="secondary">
+              {new Date() > new Date(event.endDate) ? <Typography color='secondary'>The event has ended</Typography> : (<Button href={'/tickets/sell'} variant="contained" color="secondary">
                 Sell Tickets
               </Button>)}
             </div>)}

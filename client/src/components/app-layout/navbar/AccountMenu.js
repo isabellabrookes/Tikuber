@@ -66,7 +66,7 @@ class AccountMenu extends React.Component {
                   <ClickAwayListener onClickAway={this.handleClose}>
                     <MenuList>
                       {user && user.role.type === 'Admin' && <MenuItem onClick={()=> history.push('/events/create')}>Create Event</MenuItem> }
-                      <MenuItem onClick={()=> history.push('/sell')}>Sell Ticket</MenuItem>
+                      <MenuItem onClick={()=> history.push('/tickets/sell')}>Sell Ticket</MenuItem>
                       <MenuItem onClick={()=> history.push('/logout')}>Logout</MenuItem>
                     </MenuList>
                   </ClickAwayListener>

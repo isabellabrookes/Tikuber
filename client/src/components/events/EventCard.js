@@ -25,7 +25,7 @@ const EventCard = (props) => {
         </CardContent>
         {dateClass === 'Event-Live' ? (<CardActions className='EventList-Card-Buttons'>
           <Button href={`/events/${event.id}`} size="small"  color="default">See Event</Button>
-          <Button href={`/sell`} eventId={event.id} size="small" color="primary">Sell Tickets</Button>
+          <Button href={`/tickets/sell`} eventId={event.id} size="small" color="primary">Sell Tickets</Button>
           <Button href={`/events/${event.id}/tickets`} size="small" color="secondary">Buy Tickets</Button>
         </CardActions>): <Typography color='secondary' style={{padding: '1em', textAlign: 'center'}}>Event Has Finished</Typography>}
       </div>
