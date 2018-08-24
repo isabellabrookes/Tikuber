@@ -69,7 +69,7 @@ const mapStateToProps = (state, props) => ({
   authenticated: state.currentUser !== null,
   user: state.currentUser && state.users && state.users[userId(state.currentUser.jwt)],
   tickets: state.tickets,
-  ticket: state.tickets && state.tickets[props.match.params.id],
+
   eventsTickets: state.tickets && state.events && Object.values(state.tickets).filter(ticket => ticket.event.id === state.tickets[props.match.params.id].event.id),
 })
 

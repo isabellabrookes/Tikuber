@@ -20,6 +20,18 @@ class TicketForm extends Component {
     image: "",
   }
 
+  componentDidMount() {
+      if (this.props.ticket) {
+        return this.setState({
+          event: this.props.ticket.event.id,
+          price: this.props.ticket.price,
+          image: this.props.ticket.image,
+          description: this.props.ticket.description,
+          id: this.props.ticket.id
+        })
+      }
+  }
+
   handleSubmit = async (e) => {
     e.preventDefault()
     await this.setState({
@@ -44,7 +56,10 @@ class TicketForm extends Component {
 
 
   render() {
-    const {events} = this.props
+    const {events, ticket} = this.props
+
+
+
     return (
       <form id="TicketForm" onSubmit={this.handleSubmit} className='centered-flex-column' >
         <Grid container justify='space-around' spacing={24}>
@@ -68,6 +83,7 @@ class TicketForm extends Component {
                 id="select-event"
                 label="Select Event"
                 select
+                defaultValue={this.state.event}
                 value={this.state.event}
                 onChange={this.handleChange('event')}
                 InputLabelProps={{
@@ -122,9 +138,10 @@ class TicketForm extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, props) => ({
 events: state.events === null ? null : Object.values(state.events).sort((a, b) => new Date(b.startDate) - new Date(a.endDate)),
-user: state.currentUser && state.users && state.users[userId(state.currentUser.jwt)]
+user: state.currentUser && state.users && state.users[userId(state.currentUser.jwt)],
+ticket: state.tickets && state.tickets[props.match.params.id],
 })
 
 export default connect(mapStateToProps)(TicketForm)

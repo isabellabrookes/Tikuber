@@ -42,3 +42,18 @@ export const createTicket = (price, description, image, sellerUser, event) => (d
     .then(result =>dispatch(addTicket(result.body)))
     .catch(err => console.log(err))
 }
+
+export const updateMyTicket = (price, description, image, sellerUser, event) => (dispatch, getState) => {
+  const state = getState()
+  if (!state.currentUser) return null
+  const jwt = state.currentUser.jwt
+  if (isExpired(jwt)) return dispatch(logout())
+
+  request
+    .put(`${baseUrl}/tickets`)
+    .set('Authorization', `Bearer ${jwt}`)
+    .send({price, description, image, sellerUser, event})
+    .then(result =>dispatch(updateTicket(result.body)))
+    .catch(err => console.log(err))
+}
+

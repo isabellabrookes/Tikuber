@@ -15,6 +15,8 @@ import EventsTickets from '../../events/EventsTickets'
 import CreateEvent from '../../events/CreateEvent'
 import NotFound404 from '../errors/NotFound404'
 import {Switch} from 'react-router'
+import MyTickets from '../../user/profile/MyTickets'
+import EditTicket from '../../tickets/EditTicket'
 
 class App extends Component {
   render() {
@@ -37,6 +39,8 @@ class App extends Component {
               <Route exact path="/tickets" component={TicketsList} />
               <Route exact path="/tickets/sell" component={SellTickets} />
               <Route exact path="/tickets/:id(\d+)" component={Ticket} />
+              <Route exact path="/tickets/:id(\d+)/edit" component={EditTicket} />
+              <Route exact path="/my/tickets" component={MyTickets}/>
               <Route component={NotFound404}/>
             </Switch>
           </main>

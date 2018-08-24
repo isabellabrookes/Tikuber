@@ -31,7 +31,20 @@ const TicketCard = (props) => {
   const ticketStatus = () => {
     if (dateClass === 'Event-Finished') return <Typography color='secondary' style={{textAlign: 'center'}}>Event has finished</Typography>
     if (soldClass === 'Ticket-Sold') return <Typography color='secondary' style={{textAlign: 'center'}}>Ticket has been sold</Typography>
-    return <Button href={`/tickets/${ticket.id}`} variant='contained' color='primary'>See Ticket</Button>
+    return (
+      <Grid container direction='row'>
+        <Grid item xs={6}>
+          <Button className='width-100' href={`/tickets/${ticket.id}`} variant='contained' color='primary'>See Ticket</Button>
+        </Grid>
+        {
+          parent === 'MyTickets-Selling' && (
+            <Grid item xs={6}>
+              <Button className='width-100' href={`/tickets/${ticket.id}/edit`} variant='contained' color='secondary'>Edit Ticket</Button>
+            </Grid>
+          )
+        }
+      </Grid>
+    )
   }
 
   const gridProperties = calculateGridProperties(parent)
@@ -79,6 +92,7 @@ const TicketCard = (props) => {
             {
               ticketStatus()
             }
+
             </div>
       </Grid>
     </Card>
