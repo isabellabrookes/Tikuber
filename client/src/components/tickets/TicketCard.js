@@ -25,7 +25,7 @@ const TicketCard = (props) => {
       case 'EventPage':
         return {outerGridxs: 12, outerGridsm: 12, outerGridDirection: 'row', innerGridDirection: 'column', buttonsm: 12}
       case 'MyTickets-Selling':
-        return {outerGridxs: 12, outerGridsm: 12, outerGridDirection: 'row', innerGridDirection: 'column', buttonsm: 6}
+        return {outerGridxs: 6, outerGridsm: 3, outerGridDirection: 'row', innerGridDirection: 'column', buttonsm: 6}
       default:
         return {outerGridxs: 12, outerGridsm: 12, outerGridDirection: 'row', innerGridDirection: 'column', buttonsm: 12}
     }
@@ -54,13 +54,13 @@ const TicketCard = (props) => {
     <Card className={`${dateClass} ${soldClass} padding-1 margin-1 ${riskFactor.riskClass}`}>
       <Grid container spacing={24} direction={`${gridProperties.outerGridDirection}`} alignItems="stretch">
         {
-          parent === 'TicketsList' && (
+          parent === 'TicketsList' || parent === 'MyTickets-Selling' && (
             <Grid item xs={gridProperties.outerGridxs} sm={gridProperties.outerGridsm} className='centered-flex-column'>
               <img src={ticket.event.image} alt={`Ticket for sale for ${ticket.event}`} style={{height: '20vh', maxWidth: '40vw', borderRadius:'0.5em'}}/>
             </Grid>)
         }
         {
-          parent === 'TicketsList' && (
+          parent === 'TicketsList' || parent === 'MyTickets-Selling' && (
           <Grid item xs={gridProperties.outerGridxs} sm={gridProperties.outerGridsm}>
             <EventInfo event={ticket.event}/>
           </Grid>)
