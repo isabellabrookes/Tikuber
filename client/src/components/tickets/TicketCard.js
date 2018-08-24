@@ -19,13 +19,15 @@ const TicketCard = (props) => {
   const calculateGridProperties = (parent) => {
     switch(parent){
       case 'TicketsList':
-        return {outerGridxs: 6, outerGridsm: 3, outerGridDirection: 'row', innerGridDirection: 'column'}
+        return {outerGridxs: 6, outerGridsm: 3, outerGridDirection: 'row', innerGridDirection: 'column', buttonsm: 12}
       case 'EventTickets':
-        return {outerGridxs: 12, outerGridsm: 6, outerGridDirection: 'row', innerGridDirection: 'row'}
+        return {outerGridxs: 12, outerGridsm: 6, outerGridDirection: 'row', innerGridDirection: 'row', buttonsm: 12}
       case 'EventPage':
-        return {outerGridxs: 12, outerGridsm: 12, outerGridDirection: 'row', innerGridDirection: 'column'}
+        return {outerGridxs: 12, outerGridsm: 12, outerGridDirection: 'row', innerGridDirection: 'column', buttonsm: 12}
+      case 'MyTickets-Selling':
+        return {outerGridxs: 12, outerGridsm: 12, outerGridDirection: 'row', innerGridDirection: 'column', buttonsm: 6}
       default:
-        return {outerGridxs: 12, outerGridsm: 12, outerGridDirection: 'row', innerGridDirection: 'column'}
+        return {outerGridxs: 12, outerGridsm: 12, outerGridDirection: 'row', innerGridDirection: 'column', buttonsm: 12}
     }
   }
   const ticketStatus = () => {
@@ -33,12 +35,12 @@ const TicketCard = (props) => {
     if (soldClass === 'Ticket-Sold') return <Typography color='secondary' style={{textAlign: 'center'}}>Ticket has been sold</Typography>
     return (
       <Grid container direction='row'>
-        <Grid item xs={6}>
+        <Grid item xs={gridProperties.buttonsm}>
           <Button className='width-100' href={`/tickets/${ticket.id}`} variant='contained' color='primary'>See Ticket</Button>
         </Grid>
         {
           parent === 'MyTickets-Selling' && (
-            <Grid item xs={6}>
+            <Grid item xs={gridProperties.buttonsm}>
               <Button className='width-100' href={`/tickets/${ticket.id}/edit`} variant='contained' color='secondary'>Edit Ticket</Button>
             </Grid>
           )
