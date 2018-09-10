@@ -26,7 +26,8 @@ export default class CommentController {
 
   @Get('/comments')
   getComments() {
-    return Comment.find()
+    return Comment.find(
+      {relations: ['user', 'ticket']})
   }
 
   @Authorized()
